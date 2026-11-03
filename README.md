@@ -36,9 +36,20 @@ Password: Admin@12345
 
 | Variable | Description |
 |---|---|
-| `DATABASE_URL` | SQLite file path (default: `file:./dev.db`) |
+| `DATABASE_URL` | Local: `file:./dev.db` (SQLite) — Production: Postgres connection string |
 | `AUTH_SECRET` | Long random string used to sign admin sessions |
 | `NEXT_PUBLIC_SITE_URL` | Public site URL for SEO/canonical/sitemap (production) |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob token for image uploads (production only) |
+
+## النشر على Vercel — Deployment
+
+1. اربط الـ repository بمشروع Vercel جديد.
+2. أضف **Vercel Postgres** (أو Neon) من تبويب Storage — سيضيف `DATABASE_URL` تلقائياً.
+3. أضف **Vercel Blob** من تبويب Storage — سيضيف `BLOB_READ_WRITE_TOKEN` تلقائياً.
+4. أضف `AUTH_SECRET` و `NEXT_PUBLIC_SITE_URL` من إعدادات Environment Variables.
+5. النشر يشغّل `npm run db:deploy` تلقائياً (db push + seed) قبل `next build`.
+
+> ملاحظة: `prisma/schema.prisma` مضبوط على PostgreSQL للإنتاج. للتطوير المحلي بـ SQLite، بدّل `provider` إلى `"sqlite"` مؤقتاً وشغّل `npm run db:setup`.
 
 ## Structure
 

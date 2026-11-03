@@ -3,8 +3,11 @@ import { randomBytes } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import { put } from "@vercel/blob";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
+
+const useBlob = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 
 const ALLOWED_TYPES = new Map<string, string>([
   ["image/jpeg", "jpg"],
@@ -51,11 +54,23 @@ export async function POST(request: Request) {
       .toBuffer();
 
     const filename = `${Date.now()}-${randomBytes(6).toString("hex")}.webp`;
-    const uploadsDir = path.join(process.cwd(), "public", "uploads");
-    await mkdir(uploadsDir, { recursive: true });
-    await writeFile(path.join(uploadsDir, filename), optimized);
 
-    const publicPath = `/uploads/${filename}`;
+    let publicPath: string;
+    if (useBlob) {
+      // Production (Vercel): store in Blob storage
+      const blob = await put(`uploads/${filename}`, optimized, {
+        access: "public",
+        contentType: "image/webp",
+      });
+      publicPath = blob.url;
+    } else {
+      // Local development: store in public/uploads
+      const uploadsDir = path.join(process.cwd(), "public", "uploads");
+      await mkdir(uploadsDir, { recursive: true });
+      await writeFile(path.join(uploadsDir, filename), optimized);
+      publicPath = `/uploads/${filename}`;
+    }
+
     await db.media.create({
       data: {
         filename: file.name,

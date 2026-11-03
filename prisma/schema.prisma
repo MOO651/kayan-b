@@ -3,9 +3,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+// NOTE: for local development with SQLite, temporarily switch provider to
+// "sqlite" and DATABASE_URL="file:./dev.db", then run: npm run db:setup
 
 model User {
   id           String   @id @default(cuid())

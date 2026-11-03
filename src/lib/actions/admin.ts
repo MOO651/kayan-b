@@ -413,14 +413,20 @@ export async function deleteMedia(id: string): Promise<void> {
     await db.media.delete({ where: { id } });
     // File removal is best-effort; the record is the source of truth
     try {
-      const { unlink } = await import("node:fs/promises");
-      const path = await import("node:path");
-      const filePath = path.join(
-        process.cwd(),
-        "public",
-        media.path.replace(/\//g, path.sep),
-      );
-      if (filePath.includes("uploads")) await unlink(filePath);
+      if (media.path.startsWith("http")) {
+        // Vercel Blob
+        const { del } = await import("@vercel/blob");
+        await del(media.path);
+      } else {
+        const { unlink } = await import("node:fs/promises");
+        const path = await import("node:path");
+        const filePath = path.join(
+          process.cwd(),
+          "public",
+          media.path.replace(/\//g, path.sep),
+        );
+        if (filePath.includes("uploads")) await unlink(filePath);
+      }
     } catch {
       // file may already be gone
     }
