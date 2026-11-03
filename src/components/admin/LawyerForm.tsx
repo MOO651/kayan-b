@@ -1,0 +1,111 @@
+"use client";
+
+import { useActionState } from "react";
+import { saveLawyer, type AdminState } from "@/lib/actions/admin";
+import {
+  Field,
+  TextInput,
+  TextArea,
+  Checkbox,
+  SubmitButton,
+  FormMessage,
+} from "./fields";
+import { ImageField } from "./ImageField";
+
+const initialState: AdminState = { status: "idle" };
+
+type Lawyer = {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  titleAr: string;
+  titleEn: string;
+  bioAr: string;
+  bioEn: string;
+  photo: string;
+  specialties: string;
+  order: number;
+  visible: boolean;
+};
+
+export function LawyerForm({ lawyer }: { lawyer?: Lawyer }) {
+  const [state, action] = useActionState(saveLawyer, initialState);
+  const errors = state.fieldErrors ?? {};
+
+  return (
+    <form action={action} className="space-y-8">
+      {lawyer && <input type="hidden" name="id" value={lawyer.id} />}
+
+      <FormMessage state={state} />
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-5 border border-charcoal-900/10 bg-white p-6">
+          <h2 className="font-display text-lg font-semibold text-charcoal-900">
+            البيانات بالعربية
+          </h2>
+          <Field label="الاسم (عربي)" name="nameAr" required error={errors.nameAr}>
+            <TextInput name="nameAr" defaultValue={lawyer?.nameAr} maxLength={150} />
+          </Field>
+          <Field label="المسمى المهني (عربي)" name="titleAr" error={errors.titleAr}>
+            <TextInput name="titleAr" defaultValue={lawyer?.titleAr} maxLength={150} />
+          </Field>
+          <Field label="السيرة المهنية (عربي)" name="bioAr" error={errors.bioAr}>
+            <TextArea name="bioAr" defaultValue={lawyer?.bioAr} rows={6} />
+          </Field>
+        </div>
+
+        <div className="space-y-5 border border-charcoal-900/10 bg-white p-6">
+          <h2 className="font-display text-lg font-semibold text-charcoal-900">
+            البيانات بالإنجليزية
+          </h2>
+          <Field label="الاسم (إنجليزي)" name="nameEn" error={errors.nameEn}>
+            <TextInput name="nameEn" defaultValue={lawyer?.nameEn} dir="ltr" maxLength={150} />
+          </Field>
+          <Field label="المسمى المهني (إنجليزي)" name="titleEn" error={errors.titleEn}>
+            <TextInput name="titleEn" defaultValue={lawyer?.titleEn} dir="ltr" maxLength={150} />
+          </Field>
+          <Field label="السيرة المهنية (إنجليزي)" name="bioEn" error={errors.bioEn}>
+            <TextArea name="bioEn" defaultValue={lawyer?.bioEn} rows={6} dir="ltr" />
+          </Field>
+        </div>
+      </div>
+
+      <div className="space-y-5 border border-charcoal-900/10 bg-white p-6">
+        <h2 className="font-display text-lg font-semibold text-charcoal-900">
+          الإعدادات
+        </h2>
+        <ImageField
+          name="photo"
+          label="الصورة الشخصية"
+          defaultValue={lawyer?.photo}
+          hint="صورة مهنية بخلفية هادئة، يُفضّل أبعاد 3:4."
+        />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field
+            label="التخصصات"
+            name="specialties"
+            error={errors.specialties}
+            hint="افصل بين التخصصات بفاصلة، مثال: القانون الجنائي، التحكيم"
+          >
+            <TextInput name="specialties" defaultValue={lawyer?.specialties} maxLength={500} />
+          </Field>
+          <Field label="الترتيب" name="order" error={errors.order}>
+            <TextInput
+              name="order"
+              type="number"
+              defaultValue={String(lawyer?.order ?? 0)}
+              dir="ltr"
+            />
+          </Field>
+        </div>
+        <Checkbox
+          name="visible"
+          label="ظاهر على الموقع"
+          defaultChecked={lawyer?.visible ?? true}
+        />
+      </div>
+
+      <SubmitButton label={lawyer ? "حفظ التعديلات" : "إضافة العضو"} />
+    </form>
+  );
+}

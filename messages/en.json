@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "title": "Kayan Bashmeel | Law Firm & Legal Consultancy",
+    "description": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About the Firm",
+    "services": "Practice Areas",
+    "team": "Our Team",
+    "articles": "Legal Insights",
+    "consultation": "Request a Consultation",
+    "contact": "Contact Us"
+  },
+  "common": {
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "details": "Details",
+    "loading": "Loading…",
+    "backHome": "Back to homepage",
+    "language": "العربية",
+    "brandName": "Kayan Bashmeel",
+    "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY"
+  },
+  "header": {
+    "consultation": "Request a Consultation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "kicker": "Law Firm & Legal Consultancy",
+    "title": "Kayan Bashmeel",
+    "subtitle": "We provide legal services with integrity and precision, through a team of lawyers, defending our clients' rights and serving institutions, companies, and individuals across Egypt.",
+    "cta": "Request a Legal Consultation",
+    "secondary": "Discover the Firm",
+    "scroll": "Scroll down"
+  },
+  "home": {
+    "about": {
+      "kicker": "About the Firm",
+      "title": "Established legal expertise, unwavering professional commitment",
+      "text": "Kayan Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt.",
+      "philosophyTitle": "Our Philosophy",
+      "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law.",
+      "missionTitle": "Our Mission",
+      "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt with professionalism and excellence.",
+      "valuesTitle": "Our Values",
+      "values": "Integrity, precision, confidentiality, commitment, and professionalism in every case and every consultation.",
+      "link": "Learn more about the firm"
+    },
+    "services": {
+      "kicker": "Practice Areas",
+      "title": "Our Legal Practice Areas",
+      "subtitle": "An integrated range of legal services for individuals, companies, and institutions.",
+      "viewAll": "View all practice areas",
+      "consult": "Request a consultation in this area"
+    },
+    "why": {
+      "kicker": "Why Choose Us",
+      "title": "Why Our Clients Choose Us",
+      "items": {
+        "professionalism": {
+          "title": "Professionalism",
+          "text": "A first-class professional standard in every case and every legal consultation."
+        },
+        "confidentiality": {
+          "title": "Absolute Confidentiality",
+          "text": "We uphold the highest standards of confidentiality and protect our clients' information at all times."
+        },
+        "clientFocus": {
+          "title": "Client-Focused Representation",
+          "text": "Our clients' interests are at the heart of every decision and every legal step we take."
+        },
+        "research": {
+          "title": "Legal Research & Analysis",
+          "text": "Careful legal study and precise analysis of every detail of the case before any action."
+        },
+        "strategy": {
+          "title": "Strategic Solutions",
+          "text": "Practical legal solutions carefully designed to achieve the best possible outcomes."
+        }
+      }
+    },
+    "team": {
+      "kicker": "Our Team",
+      "title": "Our Lawyers & Legal Team",
+      "subtitle": "A team of lawyers specialized across legal practice areas.",
+      "viewAll": "Meet the team"
+    },
+    "articles": {
+      "kicker": "Legal Insights",
+      "title": "Latest Articles & Legal Insights",
+      "subtitle": "Articles and legal analysis to keep you informed of key developments.",
+      "viewAll": "All articles"
+    },
+    "consultation": {
+      "kicker": "Legal Consultation",
+      "title": "Do You Need Legal Advice?",
+      "text": "Our legal team is ready to study your case and provide appropriate legal counsel in strict confidence.",
+      "cta": "Request Your Consultation"
+    },
+    "contact": {
+      "kicker": "Contact Us",
+      "title": "We Are at Your Service",
+      "text": "Reach us through the form or the contact details, and our team will get back to you as soon as possible."
+    }
+  },
+  "services": {
+    "title": "Practice Areas",
+    "subtitle": "Integrated legal services for individuals, companies, and institutions in Egypt.",
+    "consultCta": "Request a consultation in this area",
+    "backToServices": "Back to practice areas",
+    "related": "Other practice areas"
+  },
+  "team": {
+    "title": "Our Team",
+    "subtitle": "Our lawyers and legal consultants.",
+    "specialties": "Specializations",
+    "empty": "Our team members will be announced soon."
+  },
+  "articles": {
+    "title": "Articles & Legal Insights",
+    "subtitle": "Articles and legal analysis from our team.",
+    "search": "Search articles…",
+    "all": "All",
+    "empty": "No published articles at the moment.",
+    "noResults": "No results match your search.",
+    "publishedAt": "Published",
+    "backToArticles": "Back to articles",
+    "related": "Related articles"
+  },
+  "consultation": {
+    "title": "Request a Legal Consultation",
+    "subtitle": "Fill in the form below and our legal team will contact you in strict confidence.",
+    "confidential": "All information provided is treated with complete confidentiality and is never shared with third parties."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are happy to hear from you at any time.",
+    "info": "Contact Information",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "followUs": "Follow Us",
+    "formTitle": "Send Your Message"
+  },
+  "form": {
+    "name": "Full name",
+    "phone": "Phone number",
+    "email": "Email address",
+    "service": "Legal practice area",
+    "servicePlaceholder": "Select a practice area",
+    "message": "Brief description of your case",
+    "messageContact": "Your message",
+    "preferredContact": "Preferred contact method",
+    "preferredPhone": "Phone call",
+    "preferredEmail": "Email",
+    "preferredWhatsapp": "WhatsApp",
+    "submit": "Submit Request",
+    "submitContact": "Send Message",
+    "sending": "Sending…",
+    "success": "Your request has been received successfully. Our team will contact you shortly.",
+    "successContact": "Your message has been sent successfully. Thank you for contacting us.",
+    "error": "An error occurred while submitting. Please try again.",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
+    "tooShort": "This text is too short"
+  },
+  "footer": {
+    "about": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt.",
+    "quickLinks": "Quick Links",
+    "services": "Practice Areas",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Legal Notices"
+  },
+  "about": {
+    "title": "About the Firm",
+    "subtitle": "Kayan Bashmeel Law Firm & Legal Consultancy.",
+    "introTitle": "Who We Are",
+    "intro": "Kayan Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt.",
+    "philosophyTitle": "Our Philosophy",
+    "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law. We treat every case as a trust, and every client as a partner in the pursuit of justice.",
+    "missionTitle": "Our Mission",
+    "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt, through a team of lawyers combining practical experience with in-depth legal research.",
+    "valuesTitle": "Our Values",
+    "values": {
+      "integrity": { "title": "Integrity", "text": "Honesty and transparency are the foundation of our dealings with clients and the courts." },
+      "precision": { "title": "Precision", "text": "Meticulous attention to every legal detail, however small it may seem." },
+      "confidentiality": { "title": "Confidentiality", "text": "Complete protection of all client information and documents." },
+      "commitment": { "title": "Commitment", "text": "Relentless follow-up on every case until the best possible outcome is achieved." }
+    },
+    "cta": "Contact Us"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "updated": "Last updated",
+    "sections": {
+      "intro": { "title": "Introduction", "text": "Kayan Bashmeel Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information." },
+      "collect": { "title": "Information We Collect", "text": "We collect information you voluntarily provide when filling in contact or consultation request forms, such as your name, phone number, email address, and a description of your legal matter. We do not collect any personal information without your knowledge." },
+      "use": { "title": "How We Use Information", "text": "The information provided is used exclusively to communicate with you regarding your request or legal consultation and to deliver the requested legal services. We do not sell, rent, or share your information with any third party for marketing purposes." },
+      "confidentiality": { "title": "Professional Confidentiality", "text": "All information relating to cases and legal consultations is subject to the professional confidentiality rules governing the legal profession, and is not disclosed except where required by law." },
+      "security": { "title": "Information Security", "text": "We take appropriate technical and organizational measures to protect your information from unauthorized access, alteration, disclosure, or destruction." },
+      "cookies": { "title": "Cookies", "text": "The website may use cookies strictly necessary for operating the site and improving the browsing experience only; we do not use them to track you for advertising purposes." },
+      "rights": { "title": "Your Rights", "text": "You have the right to request access to, correction of, or deletion of your personal data held by us by contacting us through the contact details shown on the website." },
+      "changes": { "title": "Changes to This Policy", "text": "We may update this policy from time to time, and any amendments will be posted on this page with an updated revision date." },
+      "contact": { "title": "Contact", "text": "For any inquiry related to the privacy policy, please contact us through the Contact Us page." }
+    }
+  },
+  "terms": {
+    "title": "Terms & Legal Notices",
+    "updated": "Last updated",
+    "sections": {
+      "intro": { "title": "Introduction", "text": "By using this website, you agree to these terms and legal notices. If you do not agree to any of these terms, please stop using the website." },
+      "noAdvice": { "title": "Website Content Is Not Legal Advice", "text": "The content published on this website, including articles and legal insights, is for general informational purposes only and does not constitute legal advice, nor does it create an attorney-client relationship. For legal advice regarding your specific matter, please contact us directly." },
+      "noRelationship": { "title": "Attorney-Client Relationship", "text": "An attorney-client relationship is only established upon signing a power of attorney or a legal services agreement with the firm. Merely sending a message or a consultation request through the website does not create this relationship." },
+      "ip": { "title": "Intellectual Property", "text": "All content of this website, including text, design, logos, and images, is owned by the firm or licensed to it, and may not be copied or republished without prior written permission." },
+      "liability": { "title": "Limitation of Liability", "text": "We exercise reasonable care to ensure the accuracy of the information published on the website; however, we do not guarantee it is error-free, and we accept no liability for any decisions made based on the general content published." },
+      "links": { "title": "External Links", "text": "The website may contain links to external websites whose content we do not control, and we accept no responsibility for the content or policies of those websites." },
+      "law": { "title": "Governing Law", "text": "These terms are governed by the laws of the Arab Republic of Egypt, and the Egyptian courts have jurisdiction over any dispute arising from the use of this website." }
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "text": "Sorry, the page you are looking for does not exist or has been moved.",
+    "cta": "Back to homepage"
+  }
+}
