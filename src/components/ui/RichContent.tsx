@@ -3,7 +3,8 @@ import { Icon } from "./Icon";
 
 /**
  * Renders plain-text content stored in the database:
- * blank-line-separated paragraphs, and lines starting with "- " become list items.
+ * blank-line-separated paragraphs, lines starting with "## " become
+ * section headings, and lines starting with "- " become list items.
  */
 export function RichContent({
   content,
@@ -33,6 +34,22 @@ export function RichContent({
                 </li>
               ))}
             </ul>
+          );
+        }
+
+        // Heading block: a line starting with "## " optionally followed
+        // by a body paragraph.
+        const headingLine = lines[0]?.trimStart();
+        if (headingLine?.startsWith("## ")) {
+          const heading = headingLine.slice(3).trim();
+          const body = lines.slice(1).join(" ");
+          return (
+            <div key={i} className="space-y-2">
+              <h2 className="pt-3 font-display text-xl font-semibold text-charcoal-900 sm:text-2xl">
+                {heading}
+              </h2>
+              {body && <p className="leading-loose">{body}</p>}
+            </div>
           );
         }
 

@@ -3,6 +3,12 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Scroll reveal. Content is visible by default; we only apply the
+ * hidden state via a class added here BEFORE paint, so users never
+ * see content disappear. Elements below the fold fade in on scroll;
+ * anything already visible to the user never hides at all.
+ */
 export function Reveal({
   children,
   className,
@@ -20,6 +26,16 @@ export function Reveal({
     const element = ref.current;
     if (!element) return;
 
+    const rect = element.getBoundingClientRect();
+    const viewport = window.innerHeight || 800;
+
+    // Element is at least partially in view right now → show immediately.
+    if (rect.top < viewport * 1.05) {
+      element.classList.add("is-visible");
+      return;
+    }
+
+    // Below the fold → fade in when it approaches the viewport.
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -29,7 +45,8 @@ export function Reveal({
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      // Fire as soon as any part of the element approaches the viewport.
+      { threshold: 0, rootMargin: "0px 0px 0px 0px" },
     );
 
     observer.observe(element);

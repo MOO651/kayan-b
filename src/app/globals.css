@@ -73,16 +73,18 @@ html[lang="en"] body {
   background: var(--color-brass-500);
 }
 
-/* Scroll reveal */
-.reveal {
+/* Scroll reveal — only hides content when JS is running (html.js is set
+   inline in the layout before paint), so content is never lost if scripts
+   fail, are slow, or are blocked. */
+html.js .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(14px);
   transition:
-    opacity 0.9s var(--ease-out-expo),
-    transform 0.9s var(--ease-out-expo);
+    opacity 0.5s var(--ease-out-expo),
+    transform 0.5s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.reveal.is-visible {
+html.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }

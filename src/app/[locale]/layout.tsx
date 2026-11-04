@@ -100,6 +100,13 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
+        {/* Flag JS availability before first paint so scroll-reveal only
+            hides content when scripts will actually run. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <NextIntlClientProvider>
           <Header brand={brand} />
           <main id="main-content" className="flex-1">
