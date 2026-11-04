@@ -72,6 +72,7 @@ export async function Footer() {
                   ["services", "/services"],
                   ["team", "/team"],
                   ["articles", "/articles"],
+                  ["portfolio", "/portfolio"],
                   ["consultation", "/consultation"],
                   ["contact", "/contact"],
                 ] as const

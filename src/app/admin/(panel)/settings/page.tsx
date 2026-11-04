@@ -4,12 +4,14 @@ import {
   getContact,
   getSocial,
   getHome,
+  getAbout,
 } from "@/lib/settings";
 import {
   BrandSettingsForm,
   ContactSettingsForm,
   SocialSettingsForm,
   HomeSettingsForm,
+  AboutSettingsForm,
 } from "@/components/admin/SettingsForms";
 import { OwnAccountForm } from "@/components/admin/OwnAccountForm";
 import { PasswordForm } from "@/components/admin/UserForms";
@@ -18,11 +20,12 @@ export const dynamic = "force-dynamic";
 
 export default async function SettingsAdminPage() {
   const user = await requireAdmin();
-  const [brand, contact, social, home] = await Promise.all([
+  const [brand, contact, social, home, about] = await Promise.all([
     getBrand(),
     getContact(),
     getSocial(),
     getHome(),
+    getAbout(),
   ]);
 
   return (
@@ -101,6 +104,18 @@ export default async function SettingsAdminPage() {
         </p>
         <div className="mt-6">
           <HomeSettingsForm home={home} />
+        </div>
+      </section>
+
+      <section className="border border-charcoal-900/10 bg-white p-6">
+        <h2 className="font-display text-xl font-semibold text-charcoal-900">
+          صفحة «عن المكتب»
+        </h2>
+        <p className="mt-1 text-sm text-charcoal-600">
+          نصوص وأرقام صفحة /about — الحقول الفارغة تستخدم النصوص الافتراضية
+        </p>
+        <div className="mt-6">
+          <AboutSettingsForm about={about} />
         </div>
       </section>
     </div>

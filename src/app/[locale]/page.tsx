@@ -1,5 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
-import { getBrand, getContact } from "@/lib/settings";
+import { getBrand, getContact, getHome } from "@/lib/settings";
 import { Hero } from "@/components/home/Hero";
 
 export const dynamic = "force-dynamic";
@@ -8,6 +8,9 @@ import { ServicesSection } from "@/components/home/ServicesSection";
 import { WhySection } from "@/components/home/WhySection";
 import { TeamSection } from "@/components/home/TeamSection";
 import { ArticlesSection } from "@/components/home/ArticlesSection";
+import { PortfolioSection } from "@/components/home/PortfolioSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { FaqSection } from "@/components/home/FaqSection";
 import { ConsultationCta } from "@/components/home/ConsultationCta";
 import { ContactSection } from "@/components/home/ContactSection";
 
@@ -17,7 +20,11 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [brand, contact] = await Promise.all([getBrand(), getContact()]);
+  const [brand, contact, home] = await Promise.all([
+    getBrand(),
+    getContact(),
+    getHome(),
+  ]);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const jsonLd = {
     "@context": "https://schema.org",
@@ -57,8 +64,11 @@ export default async function HomePage({
       <AboutSection />
       <ServicesSection />
       <WhySection />
-      <TeamSection />
-      <ArticlesSection />
+      {home.showTeam && <TeamSection />}
+      {home.showPortfolio && <PortfolioSection />}
+      {home.showTestimonials && <TestimonialsSection />}
+      {home.showArticles && <ArticlesSection />}
+      {home.showFaq && <FaqSection />}
       <ConsultationCta />
       <ContactSection />
     </>

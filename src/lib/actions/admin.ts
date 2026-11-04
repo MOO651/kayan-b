@@ -17,6 +17,7 @@ import {
   type ContactSettings,
   type SocialSettings,
   type HomeSettings,
+  type AboutSettings,
 } from "@/lib/settings";
 
 export type AdminState = {
@@ -110,6 +111,9 @@ export async function saveLawyer(
     bioEn: str(formData, "bioEn"),
     photo: str(formData, "photo"),
     specialties: str(formData, "specialties"),
+    email: str(formData, "email"),
+    phone: str(formData, "phone"),
+    linkedin: str(formData, "linkedin"),
     order: str(formData, "order"),
     visible: formData.get("visible") === "on",
   });
@@ -334,6 +338,9 @@ export async function saveHomeSettings(
     aboutImage: str(formData, "aboutImage").trim(),
     showTeam: formData.get("showTeam") === "on",
     showArticles: formData.get("showArticles") === "on",
+    showPortfolio: formData.get("showPortfolio") === "on",
+    showTestimonials: formData.get("showTestimonials") === "on",
+    showFaq: formData.get("showFaq") === "on",
   };
   await setSettings("home", value);
   revalidateSite();
@@ -460,4 +467,164 @@ export async function deleteMedia(id: string): Promise<void> {
     }
   }
   revalidatePath("/admin/media");
+}
+
+// ---------- FAQ ----------
+
+export async function saveFaq(
+  _prev: AdminState,
+  formData: FormData,
+): Promise<AdminState> {
+  await requireUser();
+  const id = str(formData, "id");
+
+  const data = {
+    questionAr: str(formData, "questionAr"),
+    questionEn: str(formData, "questionEn"),
+    answerAr: str(formData, "answerAr"),
+    answerEn: str(formData, "answerEn"),
+    order: Number(str(formData, "order") || 0),
+    published: formData.get("published") === "on",
+  };
+
+  if (!data.questionAr.trim() || !data.answerAr.trim()) {
+    return { status: "error", fieldErrors: { questionAr: "السؤال والجواب (عربي) مطلوبان" } };
+  }
+
+  try {
+    if (id) await db.faq.update({ where: { id }, data });
+    else await db.faq.create({ data });
+  } catch {
+    return { status: "error" };
+  }
+
+  revalidateSite();
+  revalidatePath("/admin/faq");
+  return { status: "success" };
+}
+
+export async function deleteFaq(id: string): Promise<void> {
+  await requireUser();
+  await db.faq.delete({ where: { id } });
+  revalidateSite();
+  revalidatePath("/admin/faq");
+}
+
+// ---------- Testimonials ----------
+
+export async function saveTestimonial(
+  _prev: AdminState,
+  formData: FormData,
+): Promise<AdminState> {
+  await requireUser();
+  const id = str(formData, "id");
+
+  const data = {
+    name: str(formData, "name"),
+    roleAr: str(formData, "roleAr"),
+    roleEn: str(formData, "roleEn"),
+    contentAr: str(formData, "contentAr"),
+    contentEn: str(formData, "contentEn"),
+    rating: Math.min(5, Math.max(1, Number(str(formData, "rating") || 5))),
+    photo: str(formData, "photo"),
+    order: Number(str(formData, "order") || 0),
+    published: formData.get("published") === "on",
+  };
+
+  if (!data.name.trim() || !data.contentAr.trim()) {
+    return { status: "error", fieldErrors: { name: "الاسم والرأي (عربي) مطلوبان" } };
+  }
+
+  try {
+    if (id) await db.testimonial.update({ where: { id }, data });
+    else await db.testimonial.create({ data });
+  } catch {
+    return { status: "error" };
+  }
+
+  revalidateSite();
+  revalidatePath("/admin/testimonials");
+  return { status: "success" };
+}
+
+export async function deleteTestimonial(id: string): Promise<void> {
+  await requireUser();
+  await db.testimonial.delete({ where: { id } });
+  revalidateSite();
+  revalidatePath("/admin/testimonials");
+}
+
+// ---------- Portfolio ----------
+
+export async function savePortfolioItem(
+  _prev: AdminState,
+  formData: FormData,
+): Promise<AdminState> {
+  await requireUser();
+  const id = str(formData, "id");
+
+  const data = {
+    titleAr: str(formData, "titleAr"),
+    titleEn: str(formData, "titleEn"),
+    summaryAr: str(formData, "summaryAr"),
+    summaryEn: str(formData, "summaryEn"),
+    outcomeAr: str(formData, "outcomeAr"),
+    outcomeEn: str(formData, "outcomeEn"),
+    image: str(formData, "image"),
+    tags: str(formData, "tags"),
+    order: Number(str(formData, "order") || 0),
+    published: formData.get("published") === "on",
+  };
+
+  if (!data.titleAr.trim()) {
+    return { status: "error", fieldErrors: { titleAr: "العنوان (عربي) مطلوب" } };
+  }
+
+  try {
+    if (id) await db.portfolioItem.update({ where: { id }, data });
+    else await db.portfolioItem.create({ data });
+  } catch {
+    return { status: "error" };
+  }
+
+  revalidateSite();
+  revalidatePath("/admin/portfolio");
+  return { status: "success" };
+}
+
+export async function deletePortfolioItem(id: string): Promise<void> {
+  await requireUser();
+  await db.portfolioItem.delete({ where: { id } });
+  revalidateSite();
+  revalidatePath("/admin/portfolio");
+}
+
+// ---------- About page settings ----------
+
+export async function saveAboutSettings(
+  _prev: AdminState,
+  formData: FormData,
+): Promise<AdminState> {
+  await requireAdmin();
+  const value: AboutSettings = {
+    image: str(formData, "image"),
+    introAr: str(formData, "introAr"),
+    introEn: str(formData, "introEn"),
+    historyAr: str(formData, "historyAr"),
+    historyEn: str(formData, "historyEn"),
+    visionAr: str(formData, "visionAr"),
+    visionEn: str(formData, "visionEn"),
+    missionAr: str(formData, "missionAr"),
+    missionEn: str(formData, "missionEn"),
+    valuesAr: str(formData, "valuesAr"),
+    valuesEn: str(formData, "valuesEn"),
+    statsYears: str(formData, "statsYears"),
+    statsCases: str(formData, "statsCases"),
+    statsClients: str(formData, "statsClients"),
+    statsTeam: str(formData, "statsTeam"),
+  };
+  await setSettings("about", value);
+  revalidateSite();
+  revalidatePath("/about");
+  return { status: "success" };
 }

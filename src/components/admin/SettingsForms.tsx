@@ -6,6 +6,7 @@ import {
   saveContactSettings,
   saveSocialSettings,
   saveHomeSettings,
+  saveAboutSettings,
   type AdminState,
 } from "@/lib/actions/admin";
 import type {
@@ -13,6 +14,7 @@ import type {
   ContactSettings,
   SocialSettings,
   HomeSettings,
+  AboutSettings,
 } from "@/lib/settings";
 import {
   Field,
@@ -149,7 +151,77 @@ export function HomeSettingsForm({ home }: { home: HomeSettings }) {
       <div className="flex flex-wrap gap-8">
         <Checkbox name="showTeam" label="إظهار قسم فريق العمل" defaultChecked={home.showTeam} />
         <Checkbox name="showArticles" label="إظهار قسم المقالات" defaultChecked={home.showArticles} />
+        <Checkbox name="showPortfolio" label="إظهار قسم البورتفوليو" defaultChecked={home.showPortfolio} />
+        <Checkbox name="showTestimonials" label="إظهار آراء العملاء" defaultChecked={home.showTestimonials} />
+        <Checkbox name="showFaq" label="إظهار الأسئلة الشائعة" defaultChecked={home.showFaq} />
       </div>
+      <SubmitButton />
+    </form>
+  );
+}
+
+export function AboutSettingsForm({ about }: { about: AboutSettings }) {
+  const [state, action] = useActionState(saveAboutSettings, initialState);
+
+  return (
+    <form action={action} className="space-y-5">
+      <FormMessage state={state} />
+      <ImageField name="image" label="صورة الصفحة (اختياري)" defaultValue={about.image} />
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="مقدمة المكتب (عربي)" name="introAr">
+          <TextArea name="introAr" defaultValue={about.introAr} rows={4} />
+        </Field>
+        <Field label="مقدمة المكتب (إنجليزي)" name="introEn">
+          <TextArea name="introEn" defaultValue={about.introEn} rows={4} dir="ltr" />
+        </Field>
+        <Field label="رؤيتنا / فلسفتنا (عربي)" name="visionAr">
+          <TextArea name="visionAr" defaultValue={about.visionAr} rows={4} />
+        </Field>
+        <Field label="رؤيتنا (إنجليزي)" name="visionEn">
+          <TextArea name="visionEn" defaultValue={about.visionEn} rows={4} dir="ltr" />
+        </Field>
+        <Field label="رسالتنا (عربي)" name="missionAr">
+          <TextArea name="missionAr" defaultValue={about.missionAr} rows={4} />
+        </Field>
+        <Field label="رسالتنا (إنجليزي)" name="missionEn">
+          <TextArea name="missionEn" defaultValue={about.missionEn} rows={4} dir="ltr" />
+        </Field>
+        <Field label="مسيرتنا (عربي)" name="historyAr">
+          <TextArea name="historyAr" defaultValue={about.historyAr} rows={4} />
+        </Field>
+        <Field label="مسيرتنا (إنجليزي)" name="historyEn">
+          <TextArea name="historyEn" defaultValue={about.historyEn} rows={4} dir="ltr" />
+        </Field>
+        <Field label="قيمنا (عربي)" name="valuesAr">
+          <TextArea name="valuesAr" defaultValue={about.valuesAr} rows={3} />
+        </Field>
+        <Field label="قيمنا (إنجليزي)" name="valuesEn">
+          <TextArea name="valuesEn" defaultValue={about.valuesEn} rows={3} dir="ltr" />
+        </Field>
+      </div>
+
+      <div>
+        <p className="text-sm font-semibold text-charcoal-900">أرقام المكتب (اختياري)</p>
+        <p className="mt-1 text-xs text-charcoal-600">
+          تظهر كشريط إحصائيات في أعلى الصفحة. اتركها فارغة لإخفائها.
+        </p>
+        <div className="mt-3 grid grid-cols-2 gap-5 sm:grid-cols-4">
+          <Field label="سنوات الخبرة" name="statsYears">
+            <TextInput name="statsYears" defaultValue={about.statsYears} dir="ltr" maxLength={20} placeholder="15+" />
+          </Field>
+          <Field label="قضايا ناجحة" name="statsCases">
+            <TextInput name="statsCases" defaultValue={about.statsCases} dir="ltr" maxLength={20} placeholder="500+" />
+          </Field>
+          <Field label="عدد العملاء" name="statsClients">
+            <TextInput name="statsClients" defaultValue={about.statsClients} dir="ltr" maxLength={20} placeholder="1000+" />
+          </Field>
+          <Field label="أعضاء الفريق" name="statsTeam">
+            <TextInput name="statsTeam" defaultValue={about.statsTeam} dir="ltr" maxLength={20} placeholder="8" />
+          </Field>
+        </div>
+      </div>
+
       <SubmitButton />
     </form>
   );

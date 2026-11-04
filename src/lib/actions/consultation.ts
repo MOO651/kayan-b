@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { db } from "@/lib/db";
 import { consultationSchema, contactSchema } from "@/lib/validations";
+import { notifyNewRequest } from "@/lib/notify";
 
 export type FormState = {
   status: "idle" | "success" | "error";
@@ -87,6 +88,16 @@ export async function submitConsultation(
         preferredContact: data.preferredContact,
       },
     });
+    notifyNewRequest({
+      subject: `طلب استشارة جديد — ${data.name}`,
+      lines: [
+        `<strong>الاسم:</strong> ${data.name}`,
+        `<strong>الهاتف:</strong> ${data.phone}`,
+        data.email ? `<strong>البريد:</strong> ${data.email}` : "",
+        `<strong>تفضيل التواصل:</strong> ${data.preferredContact}`,
+        `<strong>الرسالة:</strong><br/>${data.message.replace(/\n/g, "<br/>")}`,
+      ].filter(Boolean),
+    });
     return { status: "success" };
   } catch {
     return { status: "error", fieldErrors: { form: "server" } };
@@ -128,6 +139,15 @@ export async function submitContact(
         message: data.message,
         preferredContact: "email",
       },
+    });
+    notifyNewRequest({
+      subject: `رسالة جديدة من الموقع — ${data.name}`,
+      lines: [
+        `<strong>الاسم:</strong> ${data.name}`,
+        `<strong>الهاتف:</strong> ${data.phone}`,
+        `<strong>البريد:</strong> ${data.email}`,
+        `<strong>الرسالة:</strong><br/>${data.message.replace(/\n/g, "<br/>")}`,
+      ],
     });
     return { status: "success" };
   } catch {

@@ -67,6 +67,11 @@ export default async function ArticleDetailPage({
   const article = await getArticle(slug);
   if (!article) notFound();
 
+  // Increment view count (best-effort, non-blocking)
+  await db.article
+    .update({ where: { id: article.id }, data: { views: { increment: 1 } } })
+    .catch(() => undefined);
+
   const brand = await getBrand();
   const title =
     locale === "ar" ? article.titleAr : article.titleEn || article.titleAr;

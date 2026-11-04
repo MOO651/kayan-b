@@ -16,6 +16,7 @@ const initialState: AdminState = { status: "idle" };
 
 type Lawyer = {
   id: string;
+  slug: string | null;
   nameAr: string;
   nameEn: string;
   titleAr: string;
@@ -24,6 +25,9 @@ type Lawyer = {
   bioEn: string;
   photo: string;
   specialties: string;
+  email: string;
+  phone: string;
+  linkedin: string;
   order: number;
   visible: boolean;
 };
@@ -96,6 +100,25 @@ export function LawyerForm({ lawyer }: { lawyer?: Lawyer }) {
               defaultValue={String(lawyer?.order ?? 0)}
               dir="ltr"
             />
+          </Field>
+        </div>
+        <Field
+          label="الرابط الشخصي (slug)"
+          name="slug"
+          error={errors.slug}
+          hint="اتركه فارغاً إن لم ترغب في صفحة شخصية. أحرف إنجليزية صغيرة وشرطات فقط — مثال: ahmed-hassan"
+        >
+          <TextInput name="slug" defaultValue={lawyer?.slug ?? ""} dir="ltr" maxLength={100} />
+        </Field>
+        <div className="grid gap-5 sm:grid-cols-3">
+          <Field label="البريد الإلكتروني" name="email">
+            <TextInput name="email" type="email" defaultValue={lawyer?.email} dir="ltr" maxLength={150} />
+          </Field>
+          <Field label="رقم الهاتف" name="phone">
+            <TextInput name="phone" defaultValue={lawyer?.phone} dir="ltr" maxLength={30} />
+          </Field>
+          <Field label="لينكدإن" name="linkedin">
+            <TextInput name="linkedin" defaultValue={lawyer?.linkedin} dir="ltr" maxLength={300} placeholder="https://linkedin.com/in/…" />
           </Field>
         </div>
         <Checkbox

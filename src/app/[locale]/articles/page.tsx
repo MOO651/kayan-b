@@ -46,24 +46,32 @@ export default async function ArticlesPage({
   const activeCategories = categories.filter((c) => c._count.articles > 0);
 
   const query = (q ?? "").trim();
-  const articles = await db.article.findMany({
-    where: {
-      published: true,
-      ...(category ? { category: { slug: category } } : {}),
-      ...(query
-        ? {
-            OR: [
-              { titleAr: { contains: query } },
-              { titleEn: { contains: query } },
-              { excerptAr: { contains: query } },
-              { excerptEn: { contains: query } },
-            ],
-          }
-        : {}),
-    },
-    orderBy: { publishedAt: "desc" },
-    include: { category: true },
-  });
+  const [articles, mostRead] = await Promise.all([
+    db.article.findMany({
+      where: {
+        published: true,
+        ...(category ? { category: { slug: category } } : {}),
+        ...(query
+          ? {
+              OR: [
+                { titleAr: { contains: query } },
+                { titleEn: { contains: query } },
+                { excerptAr: { contains: query } },
+                { excerptEn: { contains: query } },
+              ],
+            }
+          : {}),
+      },
+      orderBy: { publishedAt: "desc" },
+      include: { category: true },
+    }),
+    db.article.findMany({
+      where: { published: true, views: { gt: 0 } },
+      orderBy: { views: "desc" },
+      take: 3,
+      select: { slug: true, titleAr: true, titleEn: true, views: true },
+    }),
+  ]);
 
   return (
     <>
@@ -223,6 +231,36 @@ export default async function ArticlesPage({
                 );
               })}
             </div>
+          )}
+
+          {/* Most read */}
+          {mostRead.length > 0 && !query && !category && (
+            <Reveal className="mt-20">
+              <h2 className="font-display text-2xl font-semibold text-charcoal-900">
+                {t("mostRead")}
+              </h2>
+              <ol className="mt-6 divide-y divide-charcoal-900/10 border-y border-charcoal-900/10">
+                {mostRead.map((a, i) => (
+                  <li key={a.slug}>
+                    <Link
+                      href={`/articles/${a.slug}`}
+                      className="group flex items-center gap-5 py-4 transition-colors hover:bg-ivory-100"
+                    >
+                      <span className="font-display text-2xl font-bold text-brass-500/50">
+                        {i + 1}
+                      </span>
+                      <span className="min-w-0 flex-1 truncate text-sm font-medium text-charcoal-800 group-hover:text-brass-600">
+                        {locale === "ar" ? a.titleAr : a.titleEn || a.titleAr}
+                      </span>
+                      <span className="flex shrink-0 items-center gap-1.5 text-xs text-charcoal-600/70">
+                        <Icon name="eye" className="size-3.5" />
+                        <span dir="ltr">{a.views.toLocaleString(locale)}</span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
           )}
         </div>
       </section>

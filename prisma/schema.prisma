@@ -40,6 +40,7 @@ model Service {
 
 model Lawyer {
   id           String   @id @default(cuid())
+  slug         String?  @unique
   nameAr       String
   nameEn       String   @default("")
   titleAr      String   @default("")
@@ -48,6 +49,9 @@ model Lawyer {
   bioEn        String   @default("")
   photo        String   @default("")
   specialties  String   @default("")
+  email        String   @default("")
+  phone        String   @default("")
+  linkedin     String   @default("")
   order        Int      @default(0)
   visible      Boolean  @default(true)
   createdAt    DateTime @default(now())
@@ -78,6 +82,7 @@ model Article {
   seoDescEn   String    @default("")
   published   Boolean   @default(false)
   publishedAt DateTime?
+  views       Int       @default(0)
   categoryId  String?
   category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   createdAt   DateTime  @default(now())
@@ -113,4 +118,47 @@ model Media {
   size      Int
   alt       String   @default("")
   createdAt DateTime @default(now())
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  questionAr String
+  questionEn String  @default("")
+  answerAr   String
+  answerEn   String  @default("")
+  order      Int      @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  roleAr    String   @default("")
+  roleEn    String   @default("")
+  contentAr String
+  contentEn String   @default("")
+  rating    Int      @default(5)
+  photo     String   @default("")
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PortfolioItem {
+  id          String   @id @default(cuid())
+  titleAr     String
+  titleEn     String   @default("")
+  summaryAr   String   @default("")
+  summaryEn   String   @default("")
+  outcomeAr   String   @default("")
+  outcomeEn   String   @default("")
+  image       String   @default("")
+  tags        String   @default("")
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

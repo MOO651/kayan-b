@@ -32,8 +32,16 @@ const navGroups: NavGroup[] = [
     items: [
       { href: "/admin/services", label: "المجالات القانونية", icon: "briefcase" },
       { href: "/admin/team", label: "فريق العمل", icon: "users" },
+      { href: "/admin/portfolio", label: "بورتفوليو المكتب", icon: "award" },
       { href: "/admin/articles", label: "المقالات", icon: "article" },
       { href: "/admin/categories", label: "التصنيفات", icon: "file-text" },
+    ],
+  },
+  {
+    title: "التفاعل",
+    items: [
+      { href: "/admin/testimonials", label: "آراء العملاء", icon: "quote" },
+      { href: "/admin/faq", label: "الأسئلة الشائعة", icon: "inbox" },
     ],
   },
   {

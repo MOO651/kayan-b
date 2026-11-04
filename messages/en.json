@@ -103,7 +103,28 @@
       "kicker": "Contact Us",
       "title": "We Are at Your Service",
       "text": "Reach us through the form or the contact details, and our team will get back to you as soon as possible."
+    },
+    "portfolio": {
+      "kicker": "Firm Portfolio",
+      "title": "Selected Cases & Achievements",
+      "subtitle": "A selection of the firm's cases and work — client details kept strictly confidential.",
+      "viewAll": "View full portfolio"
+    },
+    "testimonials": {
+      "kicker": "Testimonials",
+      "title": "What Our Clients Say",
+      "subtitle": "Our clients' trust is our greatest achievement."
+    },
+    "faq": {
+      "kicker": "FAQ",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Quick answers to the most common inquiries."
     }
+  },
+  "portfolio": {
+    "title": "Firm Portfolio",
+    "subtitle": "Key cases and achievements of the firm — client details kept confidential.",
+    "empty": "The firm's portfolio will be published soon."
   },
   "services": {
     "title": "Practice Areas",
@@ -116,7 +137,18 @@
     "title": "Our Team",
     "subtitle": "Our lawyers and legal consultants.",
     "specialties": "Specializations",
-    "empty": "Our team members will be announced soon."
+    "empty": "Our team members will be announced soon.",
+    "viewProfile": "View profile",
+    "bookConsultation": "Request a consultation"
+  },
+  "about": {
+    "historyTitle": "Our Story",
+    "stats": {
+      "years": "Years of experience",
+      "cases": "Successful cases",
+      "clients": "Clients",
+      "team": "Lawyers & consultants"
+    }
   },
   "articles": {
     "title": "Articles & Legal Insights",
@@ -125,6 +157,7 @@
     "all": "All",
     "empty": "No published articles at the moment.",
     "noResults": "No results match your search.",
+    "mostRead": "Most read",
     "publishedAt": "Published",
     "backToArticles": "Back to articles",
     "related": "Related articles"

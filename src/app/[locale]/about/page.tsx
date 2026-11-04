@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { getAbout } from "@/lib/settings";
 
 export async function generateMetadata({
   params,
@@ -35,10 +36,40 @@ export default async function AboutPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("about");
+  const about = await getAbout();
+
+  // Admin-managed content takes precedence; fall back to translation strings.
+  const intro = (locale === "ar" ? about.introAr : about.introEn || about.introAr) || t("intro");
+  const vision = (locale === "ar" ? about.visionAr : about.visionEn || about.visionAr) || t("philosophy");
+  const mission = (locale === "ar" ? about.missionAr : about.missionEn || about.missionAr) || t("mission");
+  const values = (locale === "ar" ? about.valuesAr : about.valuesEn || about.valuesAr);
+  const history = (locale === "ar" ? about.historyAr : about.historyEn || about.historyAr);
+
+  const stats = [
+    { value: about.statsYears, label: t("stats.years") },
+    { value: about.statsCases, label: t("stats.cases") },
+    { value: about.statsClients, label: t("stats.clients") },
+    { value: about.statsTeam, label: t("stats.team") },
+  ].filter((s) => s.value);
 
   return (
     <>
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
+
+      {stats.length > 0 && (
+        <section aria-label="أرقام المكتب" className="border-b border-charcoal-900/10 bg-ivory-100 py-12">
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-5 text-center lg:grid-cols-4 lg:px-8">
+            {stats.map((s) => (
+              <Reveal key={s.label}>
+                <p className="font-display text-4xl font-bold text-brass-600" dir="ltr">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-sm text-charcoal-600">{s.label}</p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-4xl px-5 lg:px-8">
@@ -47,7 +78,7 @@ export default async function AboutPage({
               {t("introTitle")}
             </h2>
             <p className="mt-6 text-lg leading-loose text-charcoal-600">
-              {t("intro")}
+              {intro}
             </p>
           </Reveal>
 
@@ -57,7 +88,7 @@ export default async function AboutPage({
                 {t("philosophyTitle")}
               </h3>
               <p className="mt-3 leading-loose text-charcoal-600">
-                {t("philosophy")}
+                {vision}
               </p>
             </Reveal>
             <Reveal delay={100}>
@@ -65,9 +96,29 @@ export default async function AboutPage({
                 {t("missionTitle")}
               </h3>
               <p className="mt-3 leading-loose text-charcoal-600">
-                {t("mission")}
+                {mission}
               </p>
             </Reveal>
+            {history && (
+              <Reveal delay={200}>
+                <h3 className="font-display text-2xl font-semibold text-charcoal-900">
+                  {t("historyTitle")}
+                </h3>
+                <p className="mt-3 leading-loose text-charcoal-600">
+                  {history}
+                </p>
+              </Reveal>
+            )}
+            {values && (
+              <Reveal delay={300}>
+                <h3 className="font-display text-2xl font-semibold text-charcoal-900">
+                  {t("valuesTitle")}
+                </h3>
+                <p className="mt-3 leading-loose text-charcoal-600">
+                  {values}
+                </p>
+              </Reveal>
+            )}
           </div>
         </div>
       </section>

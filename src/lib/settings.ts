@@ -35,6 +35,27 @@ export type HomeSettings = {
   aboutImage: string;
   showTeam: boolean;
   showArticles: boolean;
+  showPortfolio: boolean;
+  showTestimonials: boolean;
+  showFaq: boolean;
+};
+
+export type AboutSettings = {
+  image: string;
+  introAr: string;
+  introEn: string;
+  historyAr: string;
+  historyEn: string;
+  visionAr: string;
+  visionEn: string;
+  missionAr: string;
+  missionEn: string;
+  valuesAr: string;
+  valuesEn: string;
+  statsYears: string;
+  statsCases: string;
+  statsClients: string;
+  statsTeam: string;
 };
 
 export const defaultBrand: BrandSettings = {
@@ -70,6 +91,27 @@ export const defaultHome: HomeSettings = {
   aboutImage: "",
   showTeam: true,
   showArticles: true,
+  showPortfolio: true,
+  showTestimonials: true,
+  showFaq: true,
+};
+
+export const defaultAbout: AboutSettings = {
+  image: "",
+  introAr: "",
+  introEn: "",
+  historyAr: "",
+  historyEn: "",
+  visionAr: "",
+  visionEn: "",
+  missionAr: "",
+  missionEn: "",
+  valuesAr: "",
+  valuesEn: "",
+  statsYears: "",
+  statsCases: "",
+  statsClients: "",
+  statsTeam: "",
 };
 
 export const getSettings = cache(
@@ -96,3 +138,4 @@ export const getBrand = () => getSettings("brand", defaultBrand);
 export const getContact = () => getSettings("contact", defaultContact);
 export const getSocial = () => getSettings("social", defaultSocial);
 export const getHome = () => getSettings("home", defaultHome);
+export const getAbout = () => getSettings("about", defaultAbout);

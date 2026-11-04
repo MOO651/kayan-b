@@ -60,6 +60,9 @@ export const lawyerSchema = z.object({
   bioEn: z.string().trim().max(5000).default(""),
   photo: z.string().trim().max(500).default(""),
   specialties: z.string().trim().max(500).default(""),
+  email: z.string().trim().max(150).default(""),
+  phone: z.string().trim().max(30).default(""),
+  linkedin: z.string().trim().max(300).default(""),
   order: z.coerce.number().int().min(0).max(9999).default(0),
   visible: z.coerce.boolean().default(true),
 });

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { db } from "@/lib/db";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
+import { TeamCard } from "@/components/ui/TeamCard";
 
 export const dynamic = "force-dynamic";
 
@@ -76,55 +76,20 @@ export default async function TeamPage({
                     as="article"
                     className="group border border-charcoal-900/10 bg-ivory-50"
                   >
-                    <div className="relative aspect-[4/4] overflow-hidden bg-charcoal-800">
-                      {lawyer.photo ? (
-                        <Image
-                          src={lawyer.photo}
-                          alt={name}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="flex h-full items-center justify-center">
-                          <span className="font-display text-7xl font-bold text-brass-500/30">
-                            {name.charAt(0)}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-7">
-                      <h2 className="font-display text-2xl font-semibold text-charcoal-900">
-                        {name}
-                      </h2>
-                      {title && (
-                        <p className="mt-1 text-sm font-medium tracking-wide text-brass-600">
-                          {title}
-                        </p>
-                      )}
-                      {bio && (
-                        <p className="mt-4 line-clamp-4 text-sm leading-relaxed text-charcoal-600">
-                          {bio}
-                        </p>
-                      )}
-                      {specialties.length > 0 && (
-                        <div className="mt-5">
-                          <p className="text-xs font-semibold tracking-wider text-charcoal-600/70 uppercase">
-                            {t("specialties")}
-                          </p>
-                          <ul className="mt-2 flex flex-wrap gap-2">
-                            {specialties.map((s) => (
-                              <li
-                                key={s}
-                                className="border border-brass-500/30 bg-brass-500/5 px-3 py-1 text-xs text-brass-600"
-                              >
-                                {s}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
+                    <TeamCard
+                      lawyer={{
+                        id: lawyer.id,
+                        slug: lawyer.slug,
+                        name,
+                        title,
+                        bio,
+                        photo: lawyer.photo,
+                        specialties,
+                      }}
+                      locale={locale}
+                      specialtiesLabel={t("specialties")}
+                      viewProfileLabel={t("viewProfile")}
+                    />
                   </Reveal>
                 );
               })}
