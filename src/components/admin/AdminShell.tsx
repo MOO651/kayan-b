@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -90,7 +90,7 @@ export function AdminShell({
           </span>
           <div>
             <p className="font-display text-lg font-bold leading-tight">
-              كيان باشميل
+              مكي باشميل
             </p>
             <p className="text-[0.6rem] tracking-[0.2em] text-brass-400 uppercase">
               لوحة التحكم

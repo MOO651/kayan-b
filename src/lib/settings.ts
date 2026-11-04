@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 import { cache } from "react";
 import { db } from "./db";
 
@@ -59,8 +59,8 @@ export type AboutSettings = {
 };
 
 export const defaultBrand: BrandSettings = {
-  brandNameAr: "كيان باشميل",
-  brandNameEn: "Kayan Bashmeel",
+  brandNameAr: "مكي باشميل",
+  brandNameEn: "Makki Bashmeel",
   taglineAr: "للمحاماة والاستشارات القانونية",
   taglineEn: "Law Firm & Legal Consultancy",
   logo: "",

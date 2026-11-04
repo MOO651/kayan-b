@@ -134,7 +134,7 @@ const services = [
 
 async function main() {
   // Default admin account — change the password after first login.
-  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@kayanbashmeel.com";
+  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@makkibashmeel.com";
   const adminPassword = process.env.ADMIN_PASSWORD ?? "Admin@12345";
 
   await db.user.upsert({
@@ -158,8 +158,8 @@ async function main() {
 
   const settings: Record<string, unknown> = {
     brand: {
-      brandNameAr: "كيان باشميل",
-      brandNameEn: "Kayan Bashmeel",
+      brandNameAr: "مكي باشميل",
+      brandNameEn: "Makki Bashmeel",
       taglineAr: "للمحاماة والاستشارات القانونية",
       taglineEn: "Law Firm & Legal Consultancy",
       logo: "",

@@ -1,9 +1,9 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "كيان باشميل — Law Firm & Legal Consultancy",
-    short_name: "كيان باشميل",
+    name: "مكي باشميل — Law Firm & Legal Consultancy",
+    short_name: "مكي باشميل",
     start_url: "/",
     display: "standalone",
     background_color: "#faf8f2",

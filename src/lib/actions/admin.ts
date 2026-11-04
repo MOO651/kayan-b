@@ -1,4 +1,4 @@
-"use server";
+﻿"use server";
 
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
@@ -279,8 +279,8 @@ export async function saveBrandSettings(
 ): Promise<AdminState> {
   await requireAdmin();
   const value: BrandSettings = {
-    brandNameAr: str(formData, "brandNameAr").trim() || "كيان باشميل",
-    brandNameEn: str(formData, "brandNameEn").trim() || "Kayan Bashmeel",
+    brandNameAr: str(formData, "brandNameAr").trim() || "مكي باشميل",
+    brandNameEn: str(formData, "brandNameEn").trim() || "Makki Bashmeel",
     taglineAr: str(formData, "taglineAr").trim(),
     taglineEn: str(formData, "taglineEn").trim(),
     logo: str(formData, "logo").trim(),

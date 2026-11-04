@@ -1,4 +1,4 @@
-# كيان باشميل — Kayan Bashmeel Law Firm
+# مكي باشميل — Makki Bashmeel Law Firm
 
 موقع مكتب محاماة واستشارات قانونية — ثنائي اللغة (عربي RTL / إنجليزي LTR) مع لوحة تحكم إدارية كاملة.
 
@@ -23,7 +23,7 @@ npm run dev
 ### بيانات الدخول الافتراضية للوحة التحكم
 
 ```
-Email:    admin@kayanbashmeel.com
+Email:    admin@makkibashmeel.com
 Password: Admin@12345
 ```
 

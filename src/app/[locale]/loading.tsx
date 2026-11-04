@@ -12,7 +12,7 @@ export default function Loading() {
         </span>
       </div>
       <p className="text-xs tracking-[0.3em] text-charcoal-600/60 uppercase">
-        Kayan Bashmeel
+        Makki Bashmeel
       </p>
     </div>
   );

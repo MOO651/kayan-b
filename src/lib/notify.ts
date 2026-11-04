@@ -1,4 +1,4 @@
-import "server-only";
+﻿import "server-only";
 
 /**
  * Email notifications via Resend (https://resend.com).
@@ -31,7 +31,7 @@ export async function notifyNewRequest({ subject, lines }: NotifyArgs): Promise<
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Kayan Bashmeel <onboarding@resend.dev>",
+        from: "Makki Bashmeel <onboarding@resend.dev>",
         to: [to],
         subject,
         html,

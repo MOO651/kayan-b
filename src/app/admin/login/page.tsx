@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/admin/LoginForm";
+﻿import { LoginForm } from "@/components/admin/LoginForm";
 import { Icon } from "@/components/ui/Icon";
 
 export default async function LoginPage({
@@ -26,7 +26,7 @@ export default async function LoginPage({
               لوحة التحكم
             </h1>
             <p className="mt-2 text-sm text-ivory-100/60">
-              تسجيل الدخول لإدارة موقع كيان باشميل
+              تسجيل الدخول لإدارة موقع مكي باشميل
             </p>
           </div>
           <div className="mt-8">
