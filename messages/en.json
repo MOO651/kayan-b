@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Kayan Bashmeel | Law Firm & Legal Consultancy",
-    "description": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt."
+    "description": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt and Saudi Arabia."
   },
   "nav": {
     "home": "Home",
@@ -30,7 +30,7 @@
   "hero": {
     "kicker": "Law Firm & Legal Consultancy",
     "title": "Kayan Bashmeel",
-    "subtitle": "We provide legal services with integrity and precision, through a team of lawyers, defending our clients' rights and serving institutions, companies, and individuals across Egypt.",
+    "subtitle": "We provide legal services with integrity and precision, through a team of lawyers, defending our clients' rights and serving institutions, companies, and individuals across Egypt and Saudi Arabia.",
     "cta": "Request a Legal Consultation",
     "secondary": "Discover the Firm",
     "scroll": "Scroll down"
@@ -39,11 +39,11 @@
     "about": {
       "kicker": "About the Firm",
       "title": "Established legal expertise, unwavering professional commitment",
-      "text": "Kayan Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt.",
+      "text": "Kayan Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
       "philosophyTitle": "Our Philosophy",
       "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law.",
       "missionTitle": "Our Mission",
-      "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt with professionalism and excellence.",
+      "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt and Saudi Arabia with professionalism and excellence.",
       "valuesTitle": "Our Values",
       "values": "Integrity, precision, confidentiality, commitment, and professionalism in every case and every consultation.",
       "link": "Learn more about the firm"
@@ -107,7 +107,7 @@
   },
   "services": {
     "title": "Practice Areas",
-    "subtitle": "Integrated legal services for individuals, companies, and institutions in Egypt.",
+    "subtitle": "Integrated legal services for individuals, companies, and institutions in Egypt and Saudi Arabia.",
     "consultCta": "Request a consultation in this area",
     "backToServices": "Back to practice areas",
     "related": "Other practice areas"
@@ -169,7 +169,7 @@
     "tooShort": "This text is too short"
   },
   "footer": {
-    "about": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt.",
+    "about": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",
     "quickLinks": "Quick Links",
     "services": "Practice Areas",
     "contact": "Contact",
@@ -181,11 +181,11 @@
     "title": "About the Firm",
     "subtitle": "Kayan Bashmeel Law Firm & Legal Consultancy.",
     "introTitle": "Who We Are",
-    "intro": "Kayan Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt.",
+    "intro": "Kayan Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
     "philosophyTitle": "Our Philosophy",
     "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law. We treat every case as a trust, and every client as a partner in the pursuit of justice.",
     "missionTitle": "Our Mission",
-    "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt, through a team of lawyers combining practical experience with in-depth legal research.",
+    "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt and Saudi Arabia, through a team of lawyers combining practical experience with in-depth legal research.",
     "valuesTitle": "Our Values",
     "values": {
       "integrity": { "title": "Integrity", "text": "Honesty and transparency are the foundation of our dealings with clients and the courts." },
@@ -220,7 +220,7 @@
       "ip": { "title": "Intellectual Property", "text": "All content of this website, including text, design, logos, and images, is owned by the firm or licensed to it, and may not be copied or republished without prior written permission." },
       "liability": { "title": "Limitation of Liability", "text": "We exercise reasonable care to ensure the accuracy of the information published on the website; however, we do not guarantee it is error-free, and we accept no liability for any decisions made based on the general content published." },
       "links": { "title": "External Links", "text": "The website may contain links to external websites whose content we do not control, and we accept no responsibility for the content or policies of those websites." },
-      "law": { "title": "Governing Law", "text": "These terms are governed by the laws of the Arab Republic of Egypt, and the Egyptian courts have jurisdiction over any dispute arising from the use of this website." }
+      "law": { "title": "Governing Law", "text": "These terms are governed by the laws of the Arab Republic of Egypt and Saudi Arabia, and the Egypt and Saudi Arabiaian courts have jurisdiction over any dispute arising from the use of this website." }
     }
   },
   "notFound": {

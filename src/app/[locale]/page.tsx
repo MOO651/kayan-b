@@ -26,6 +26,11 @@ export default async function HomePage({
     description:
       locale === "ar" ? brand.taglineAr : brand.taglineEn,
     url: siteUrl,
+    // The firm serves both Egypt and Saudi Arabia
+    areaServed: [
+      { "@type": "Country", name: "Egypt" },
+      { "@type": "Country", name: "Saudi Arabia" },
+    ],
     ...(contact.phone ? { telephone: contact.phone } : {}),
     ...(contact.email ? { email: contact.email } : {}),
     ...(contact.addressAr

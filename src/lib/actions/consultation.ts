@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { db } from "@/lib/db";
 import { consultationSchema, contactSchema } from "@/lib/validations";
 
@@ -17,6 +18,32 @@ function collectErrors(error: {
     if (!fieldErrors[key]) fieldErrors[key] = issue.code;
   }
   return fieldErrors;
+}
+
+// Simple in-memory rate limit for public forms: max 5 submissions
+// per IP per 10 minutes (complements the honeypot).
+const formHits = new Map<string, { count: number; resetAt: number }>();
+const FORM_MAX = 5;
+const FORM_WINDOW_MS = 10 * 60 * 1000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const entry = formHits.get(ip);
+  if (!entry || entry.resetAt < now) {
+    formHits.set(ip, { count: 1, resetAt: now + FORM_WINDOW_MS });
+    return false;
+  }
+  entry.count += 1;
+  return entry.count > FORM_MAX;
+}
+
+async function clientIp(): Promise<string> {
+  const h = await headers();
+  return (
+    h.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    h.get("x-real-ip") ??
+    "unknown"
+  );
 }
 
 export async function submitConsultation(
@@ -43,6 +70,10 @@ export async function submitConsultation(
   // Honeypot filled → silently accept without saving (spam bot)
   if (data.website) {
     return { status: "success" };
+  }
+
+  if (isRateLimited(await clientIp())) {
+    return { status: "error", fieldErrors: { form: "rate_limited" } };
   }
 
   try {
@@ -82,6 +113,10 @@ export async function submitContact(
   const data = parsed.data;
   if (data.website) {
     return { status: "success" };
+  }
+
+  if (isRateLimited(await clientIp())) {
+    return { status: "error", fieldErrors: { form: "rate_limited" } };
   }
 
   try {

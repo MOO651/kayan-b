@@ -11,7 +11,8 @@ import {
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getBrand } from "@/lib/settings";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { getBrand, getContact } from "@/lib/settings";
 import "../globals.css";
 
 const amiri = Amiri({
@@ -73,6 +74,7 @@ export async function generateMetadata({
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
     },
+    formatDetection: { telephone: true },
   };
 }
 
@@ -87,6 +89,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const brand = await getBrand();
+  const contact = await getContact();
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -103,6 +106,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
+          <WhatsAppButton phone={contact.whatsapp} />
         </NextIntlClientProvider>
       </body>
     </html>

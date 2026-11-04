@@ -58,13 +58,13 @@ export function Header({ brand }: { brand: BrandSettings }) {
           : "bg-ivory-50/95 shadow-[0_1px_0_0] shadow-charcoal-900/10 backdrop-blur-md py-3",
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 lg:gap-6 lg:px-8">
         <Link
           href="/"
           aria-label={t("common.brandName")}
           className="shrink-0 transition-opacity hover:opacity-80"
         >
-          <Logo brand={brand} locale={locale} dark={transparent} />
+          <Logo brand={brand} locale={locale} dark={transparent} compact />
         </Link>
 
         <nav aria-label={t("nav.home")} className="hidden lg:block">
@@ -94,7 +94,7 @@ export function Header({ brand }: { brand: BrandSettings }) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <LanguageSwitcher dark={transparent} />
           <Link
             href="/consultation"
@@ -113,7 +113,7 @@ export function Header({ brand }: { brand: BrandSettings }) {
             aria-expanded={menuOpen}
             aria-label={menuOpen ? t("header.closeMenu") : t("header.openMenu")}
             className={cn(
-              "inline-flex size-10 items-center justify-center border transition-colors lg:hidden",
+              "relative z-50 inline-flex size-10 items-center justify-center border transition-colors lg:hidden",
               transparent
                 ? "border-ivory-50/30 text-ivory-100"
                 : "border-charcoal-900/20 text-charcoal-900",
@@ -127,10 +127,10 @@ export function Header({ brand }: { brand: BrandSettings }) {
       {/* Mobile navigation */}
       <div
         className={cn(
-          "fixed inset-0 top-0 -z-10 flex flex-col bg-charcoal-900 pt-24 transition-all duration-500 lg:hidden",
+          "fixed inset-x-0 top-0 bottom-0 z-40 h-svh flex flex-col bg-charcoal-900 pt-24 transition-all duration-500 lg:hidden",
           menuOpen
             ? "visible opacity-100"
-            : "invisible opacity-0",
+            : "invisible opacity-0 pointer-events-none",
         )}
         aria-hidden={!menuOpen}
       >

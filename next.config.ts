@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    // Allow Vercel Blob URLs (production uploads) — without this,
+    // next/image throws for any blob.vercel-storage.com image.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.public.blob.vercel-storage.com",
+      },
+    ],
   },
 };
 
