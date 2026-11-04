@@ -342,6 +342,34 @@ export async function saveHomeSettings(
 
 // ---------- Users (ADMIN only) ----------
 
+export async function updateOwnAccount(
+  _prev: AdminState,
+  formData: FormData,
+): Promise<AdminState> {
+  const current = await requireUser();
+  const id = str(formData, "id");
+  // Only your own account
+  if (id !== current.id) return { status: "error" };
+
+  const name = str(formData, "name");
+  const email = str(formData, "email").toLowerCase();
+  if (name.trim().length < 2 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    const fieldErrors: Record<string, string> = {};
+    if (name.trim().length < 2) fieldErrors.name = "الاسم قصير جداً";
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) fieldErrors.email = "بريد غير صالح";
+    return { status: "error", fieldErrors };
+  }
+
+  try {
+    await db.user.update({ where: { id }, data: { name, email } });
+  } catch {
+    return { status: "error", message: "emailTaken" };
+  }
+  revalidatePath("/admin/settings");
+  revalidatePath("/admin/users");
+  return { status: "success" };
+}
+
 export async function saveUser(
   _prev: AdminState,
   formData: FormData,

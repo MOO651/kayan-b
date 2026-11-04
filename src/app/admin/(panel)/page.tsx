@@ -22,15 +22,15 @@ export default async function AdminDashboard() {
     newRequests,
     totalRequests,
     publishedArticles,
+    draftArticles,
     activeServices,
-    teamMembers,
     recentRequests,
   ] = await Promise.all([
     db.consultationRequest.count({ where: { status: "NEW" } }),
     db.consultationRequest.count(),
     db.article.count({ where: { published: true } }),
+    db.article.count({ where: { published: false } }),
     db.service.count({ where: { published: true } }),
-    db.lawyer.count({ where: { visible: true } }),
     db.consultationRequest.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
@@ -42,8 +42,16 @@ export default async function AdminDashboard() {
     { label: "طلبات جديدة", value: newRequests, icon: "inbox", href: "/admin/requests" },
     { label: "إجمالي الطلبات", value: totalRequests, icon: "clock", href: "/admin/requests" },
     { label: "مقالات منشورة", value: publishedArticles, icon: "article", href: "/admin/articles" },
+    { label: "مسودات مقالات", value: draftArticles, icon: "edit", href: "/admin/articles" },
     { label: "مجالات نشطة", value: activeServices, icon: "briefcase", href: "/admin/services" },
-    { label: "أعضاء الفريق", value: teamMembers, icon: "users", href: "/admin/team" },
+  ];
+
+  const quickActions = [
+    { label: "طلب استشارة جديد", hint: "إضافة طلب يدوياً", href: "/admin/requests", icon: "inbox" },
+    { label: "كتابة مقال", hint: "مقال جديد للمدونة", href: "/admin/articles/new", icon: "article" },
+    { label: "إضافة محامٍ", hint: "عضو جديد بالفريق", href: "/admin/team/new", icon: "users" },
+    { label: "رفع وسائط", hint: "صور للمعرض الإعلامي", href: "/admin/media", icon: "image" },
+    { label: "إعدادات الموقع", hint: "الهوية والتواصل", href: "/admin/settings", icon: "settings" },
   ];
 
   return (
@@ -78,6 +86,27 @@ export default async function AdminDashboard() {
           </Link>
         ))}
       </div>
+
+      <section aria-label="إجراءات سريعة">
+        <h2 className="font-display text-xl font-semibold text-charcoal-900">
+          إجراءات سريعة
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {quickActions.map((a) => (
+            <Link
+              key={a.label}
+              href={a.href}
+              className="group border border-charcoal-900/10 bg-white p-4 transition-colors hover:border-brass-500/50"
+            >
+              <span className="flex size-9 items-center justify-center bg-charcoal-900/5 text-charcoal-700 transition-colors group-hover:bg-brass-500 group-hover:text-ink-950">
+                <Icon name={a.icon} className="size-4.5" />
+              </span>
+              <p className="mt-3 text-sm font-semibold text-charcoal-900">{a.label}</p>
+              <p className="mt-0.5 text-xs text-charcoal-600">{a.hint}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="border border-charcoal-900/10 bg-white">
         <div className="flex items-center justify-between border-b border-charcoal-900/10 px-6 py-4">

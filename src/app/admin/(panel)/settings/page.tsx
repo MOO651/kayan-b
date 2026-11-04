@@ -11,11 +11,13 @@ import {
   SocialSettingsForm,
   HomeSettingsForm,
 } from "@/components/admin/SettingsForms";
+import { OwnAccountForm } from "@/components/admin/OwnAccountForm";
+import { PasswordForm } from "@/components/admin/UserForms";
 
 export const dynamic = "force-dynamic";
 
 export default async function SettingsAdminPage() {
-  await requireAdmin();
+  const user = await requireAdmin();
   const [brand, contact, social, home] = await Promise.all([
     getBrand(),
     getContact(),
@@ -33,6 +35,29 @@ export default async function SettingsAdminPage() {
           الهوية وبيانات التواصل ومحتوى الصفحة الرئيسية
         </p>
       </div>
+
+      <section className="border border-charcoal-900/10 bg-white p-6">
+        <h2 className="font-display text-xl font-semibold text-charcoal-900">
+          حسابي
+        </h2>
+        <p className="mt-1 text-sm text-charcoal-600">
+          بيانات حسابك الشخصي وكلمة المرور الخاصة بك
+        </p>
+        <div className="mt-6 grid gap-8 lg:grid-cols-2">
+          <OwnAccountForm user={{ id: user.id, name: user.name, email: user.email }} />
+          <div className="border-t border-charcoal-900/10 pt-6 lg:border-t-0 lg:border-s lg:border-charcoal-900/10 lg:ps-8 lg:pt-0">
+            <h3 className="text-sm font-semibold text-charcoal-900">
+              تغيير كلمة المرور
+            </h3>
+            <p className="mt-1 text-xs text-charcoal-600">
+              8 أحرف على الأقل. ننصح باستخدام كلمة مرور قوية.
+            </p>
+            <div className="mt-4">
+              <PasswordForm userId={user.id} />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="border border-charcoal-900/10 bg-white p-6">
         <h2 className="font-display text-xl font-semibold text-charcoal-900">

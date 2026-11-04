@@ -14,16 +14,36 @@ type NavItem = {
   adminOnly?: boolean;
 };
 
-const navItems: NavItem[] = [
-  { href: "/admin", label: "لوحة المعلومات", icon: "dashboard" },
-  { href: "/admin/requests", label: "طلبات الاستشارة", icon: "inbox" },
-  { href: "/admin/services", label: "المجالات القانونية", icon: "briefcase" },
-  { href: "/admin/team", label: "فريق العمل", icon: "users" },
-  { href: "/admin/articles", label: "المقالات", icon: "article" },
-  { href: "/admin/categories", label: "التصنيفات", icon: "file-text" },
-  { href: "/admin/media", label: "مكتبة الوسائط", icon: "image" },
-  { href: "/admin/settings", label: "إعدادات الموقع", icon: "settings", adminOnly: true },
-  { href: "/admin/users", label: "المستخدمون", icon: "shield", adminOnly: true },
+type NavGroup = {
+  title: string;
+  items: NavItem[];
+};
+
+const navGroups: NavGroup[] = [
+  {
+    title: "الرئيسية",
+    items: [
+      { href: "/admin", label: "لوحة المعلومات", icon: "dashboard" },
+      { href: "/admin/requests", label: "طلبات الاستشارة", icon: "inbox" },
+    ],
+  },
+  {
+    title: "المحتوى",
+    items: [
+      { href: "/admin/services", label: "المجالات القانونية", icon: "briefcase" },
+      { href: "/admin/team", label: "فريق العمل", icon: "users" },
+      { href: "/admin/articles", label: "المقالات", icon: "article" },
+      { href: "/admin/categories", label: "التصنيفات", icon: "file-text" },
+    ],
+  },
+  {
+    title: "النظام",
+    items: [
+      { href: "/admin/media", label: "مكتبة الوسائط", icon: "image" },
+      { href: "/admin/settings", label: "إعدادات الموقع", icon: "settings", adminOnly: true },
+      { href: "/admin/users", label: "المستخدمون", icon: "shield", adminOnly: true },
+    ],
+  },
 ];
 
 export function AdminShell({
@@ -36,9 +56,12 @@ export function AdminShell({
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const items = navItems.filter(
-    (item) => !item.adminOnly || user.role === "ADMIN",
-  );
+  const groups = navGroups
+    .map((g) => ({
+      ...g,
+      items: g.items.filter((item) => !item.adminOnly || user.role === "ADMIN"),
+    }))
+    .filter((g) => g.items.length > 0);
 
   return (
     <div className="flex min-h-svh">
@@ -68,32 +91,39 @@ export function AdminShell({
         </div>
 
         <nav className="flex-1 overflow-y-auto px-3 py-4">
-          <ul className="space-y-1">
-            {items.map((item) => {
-              const active =
-                item.href === "/admin"
-                  ? pathname === "/admin"
-                  : pathname.startsWith(item.href);
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setSidebarOpen(false)}
-                    className={cn(
-                      "flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors",
-                      active
-                        ? "bg-brass-500/15 text-brass-300"
-                        : "text-ivory-100/70 hover:bg-ivory-50/5 hover:text-ivory-50",
-                    )}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    <Icon name={item.icon} className="size-4.5" />
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          {groups.map((group) => (
+            <div key={group.title} className="mb-5 last:mb-0">
+              <p className="px-4 pb-2 text-[0.6rem] font-semibold tracking-[0.2em] text-ivory-100/40 uppercase">
+                {group.title}
+              </p>
+              <ul className="space-y-1">
+                {group.items.map((item) => {
+                  const active =
+                    item.href === "/admin"
+                      ? pathname === "/admin"
+                      : pathname.startsWith(item.href);
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setSidebarOpen(false)}
+                        className={cn(
+                          "flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors",
+                          active
+                            ? "bg-brass-500/15 text-brass-300"
+                            : "text-ivory-100/70 hover:bg-ivory-50/5 hover:text-ivory-50",
+                        )}
+                        aria-current={active ? "page" : undefined}
+                      >
+                        <Icon name={item.icon} className="size-4.5" />
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
         </nav>
 
         <div className="border-t border-ivory-50/10 p-4">
