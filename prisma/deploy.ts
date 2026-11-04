@@ -36,7 +36,12 @@ try {
   execSync("npx prisma generate", { stdio: "inherit" });
 
   console.log("Pushing Prisma schema…");
-  execSync("npx prisma db push --skip-generate", { stdio: "inherit" });
+  // --accept-data-loss: adding the Lawyer.slug unique constraint can warn
+  // about pre-existing duplicate slugs (only possible in old rows); the seed
+  // below re-runs anyway and slugs are validated on input.
+  execSync("npx prisma db push --skip-generate --accept-data-loss", {
+    stdio: "inherit",
+  });
 
   console.log("Seeding database…");
   execSync("npx tsx prisma/seed.ts", { stdio: "inherit" });
