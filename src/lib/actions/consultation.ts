@@ -86,11 +86,9 @@ export async function submitConsultation(
   // never writable to the public filesystem and only served from the
   // authenticated admin panel.
   const file = formData.get("attachment");
-  let attachment: {
-    attachmentName: string;
-    attachmentMime: string;
-    attachmentData: Buffer;
-  } | undefined;
+  let attachmentName = "";
+  let attachmentMime = "";
+  let attachmentData: Uint8Array<ArrayBuffer> | null = null;
   if (file instanceof File && file.size > 0) {
     if (file.size > ATTACHMENT_MAX_BYTES) {
       return { status: "error", fieldErrors: { attachment: "attachment_size" } };
@@ -98,12 +96,10 @@ export async function submitConsultation(
     if (!ATTACHMENT_MIMES.includes(file.type)) {
       return { status: "error", fieldErrors: { attachment: "attachment_type" } };
     }
-    const safeName = file.name.replace(/[\r\n\\/]/g, "_").slice(0, 200);
-    attachment = {
-      attachmentName: safeName,
-      attachmentMime: file.type,
-      attachmentData: Buffer.from(await file.arrayBuffer()),
-    };
+    attachmentName = file.name.replace(/[\r\n\\/]/g, "_").slice(0, 200);
+    attachmentMime = file.type;
+    const bytes = await file.arrayBuffer();
+    attachmentData = new Uint8Array(bytes.slice(0));
   }
 
   try {
@@ -115,7 +111,9 @@ export async function submitConsultation(
         serviceId: data.serviceId || null,
         message: data.message,
         preferredContact: data.preferredContact,
-        ...attachment,
+        attachmentName,
+        attachmentMime,
+        attachmentData,
       },
     });
     notifyNewRequest({
@@ -125,7 +123,7 @@ export async function submitConsultation(
         `<strong>الهاتف:</strong> ${data.phone}`,
         data.email ? `<strong>البريد:</strong> ${data.email}` : "",
         `<strong>تفضيل التواصل:</strong> ${data.preferredContact}`,
-        attachment ? `<strong>مرفق:</strong> ${attachment.attachmentName}` : "",
+        attachmentData ? `<strong>مرفق:</strong> ${attachmentName}` : "",
         `<strong>الرسالة:</strong><br/>${data.message.replace(/\n/g, "<br/>")}`,
       ].filter(Boolean),
     });

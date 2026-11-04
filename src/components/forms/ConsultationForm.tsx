@@ -37,6 +37,15 @@ export function ConsultationForm({
   const [step, setStep] = useState(0);
   const [fileName, setFileName] = useState("");
 
+  // Validation errors on earlier steps → jump the user back to fix them.
+  // Adjusting state during render (React-endorsed pattern) — no effect needed.
+  const failedStep = STEPS.findIndex((s) =>
+    s.fields.some((f) => state.fieldErrors?.[f]),
+  );
+  if (failedStep !== -1 && step !== failedStep) {
+    setStep(failedStep);
+  }
+
   if (state.status === "success") {
     return (
       <div className="flex flex-col items-center gap-4 border border-brass-500/40 bg-brass-500/5 px-8 py-12 text-center">
@@ -265,14 +274,6 @@ export function ConsultationForm({
             {t("error")}
           </p>
         )}
-        {/* Earlier-step validation errors → jump the user back to fix them */}
-        {STEPS.slice(0, 2).some((s) =>
-          s.fields.some((f) => state.fieldErrors?.[f]),
-        ) && step === 2
-          ? setStep(
-              STEPS.findIndex((s) => s.fields.some((f) => state.fieldErrors?.[f])),
-            )
-          : null}
 
         <div className="flex flex-wrap gap-3">
           <button

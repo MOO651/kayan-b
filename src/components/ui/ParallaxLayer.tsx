@@ -7,7 +7,13 @@ import { useEffect, useRef } from "react";
  * than the page scroll. Uses rAF-throttled scroll, transform only
  * (no layout), and disables itself for prefers-reduced-motion.
  */
-export function ParallaxLayer({ className }: { className?: string }) {
+export function ParallaxLayer({
+  className,
+  children,
+}: {
+  className?: string;
+  children?: React.ReactNode;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,5 +46,9 @@ export function ParallaxLayer({ className }: { className?: string }) {
     };
   }, []);
 
-  return <div ref={ref} className={className} style={{ willChange: "transform" }} />;
+  return (
+    <div ref={ref} className={className} style={{ willChange: "transform" }}>
+      {children}
+    </div>
+  );
 }
