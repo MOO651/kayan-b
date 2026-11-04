@@ -12,6 +12,7 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { BackToTop } from "@/components/layout/BackToTop";
 import { getBrand, getContact } from "@/lib/settings";
 import "../globals.css";
 
@@ -73,7 +74,16 @@ export async function generateMetadata({
       siteName: brandName,
       locale: locale === "ar" ? "ar_EG" : "en_US",
       type: "website",
+      title: t("title"),
+      description: t("description"),
+      url: siteUrl,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+    robots: { index: true, follow: true },
     formatDetection: { telephone: true },
   };
 }
@@ -114,6 +124,7 @@ export default async function LocaleLayout({
           </main>
           <Footer />
           <WhatsAppButton phone={contact.whatsapp} />
+          <BackToTop />
         </NextIntlClientProvider>
       </body>
     </html>

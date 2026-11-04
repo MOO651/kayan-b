@@ -19,6 +19,14 @@ export const consultationSchema = z.object({
   website: z.string().max(0).optional().default(""),
 });
 
+export const ATTACHMENT_MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+export const ATTACHMENT_MIMES = [
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+];
+
 export const contactSchema = z.object({
   name: z.string().trim().min(2).max(100),
   phone: z.string().trim().regex(phoneRegex).max(20),

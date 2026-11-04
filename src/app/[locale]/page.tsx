@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/Hero";
 
 export const dynamic = "force-dynamic";
 import { AboutSection } from "@/components/home/AboutSection";
+import { StatsSection } from "@/components/home/StatsSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { WhySection } from "@/components/home/WhySection";
 import { TeamSection } from "@/components/home/TeamSection";
@@ -62,6 +63,7 @@ export default async function HomePage({
       />
       <Hero />
       <AboutSection />
+      <StatsSection />
       <ServicesSection />
       <WhySection />
       {home.showTeam && <TeamSection />}

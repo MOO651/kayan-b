@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ButtonLink } from "@/components/ui/Button";
+import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { getHome, getBrand } from "@/lib/settings";
 
 export async function Hero() {
@@ -18,14 +19,16 @@ export async function Hero() {
     <section className="relative flex min-h-svh items-center overflow-hidden bg-ink-950">
       {/* Background */}
       {home.heroImage ? (
-        <Image
-          src={home.heroImage}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="ken-burns object-cover opacity-40"
-        />
+        <ParallaxLayer className="absolute inset-0">
+          <Image
+            src={home.heroImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-40"
+          />
+        </ParallaxLayer>
       ) : (
         <DefaultBackdrop />
       )}

@@ -20,7 +20,8 @@
     "backHome": "Back to homepage",
     "language": "العربية",
     "brandName": "Kayan Bashmeel",
-    "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY"
+    "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY",
+    "backToTop": "Back to top"
   },
   "header": {
     "consultation": "Request a Consultation",
@@ -130,6 +131,9 @@
     "title": "Practice Areas",
     "subtitle": "Integrated legal services for individuals, companies, and institutions in Egypt and Saudi Arabia.",
     "consultCta": "Request a consultation in this area",
+    "searchPlaceholder": "Search practice areas…",
+    "noResults": "No results match your search.",
+    "empty": "Practice areas will be published soon.",
     "backToServices": "Back to practice areas",
     "related": "Other practice areas"
   },
@@ -199,7 +203,19 @@
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address",
     "invalidPhone": "Please enter a valid phone number",
-    "tooShort": "This text is too short"
+    "tooShort": "This text is too short",
+    "step": "Step",
+    "of": "of",
+    "next": "Next",
+    "back": "Back",
+    "step1Title": "Your details",
+    "step2Title": "Your case",
+    "step3Title": "Contact & review",
+    "attachment": "Attach a document (optional)",
+    "attachmentHint": "PDF or image — max 5 MB",
+    "attachmentSize": "File exceeds the 5 MB limit",
+    "attachmentType": "Unsupported file type — PDF or images only",
+    "reviewTitle": "Review your request"
   },
   "footer": {
     "about": "Kayan Bashmeel Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",

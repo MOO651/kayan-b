@@ -2,7 +2,12 @@
 
 import { headers } from "next/headers";
 import { db } from "@/lib/db";
-import { consultationSchema, contactSchema } from "@/lib/validations";
+import {
+  consultationSchema,
+  contactSchema,
+  ATTACHMENT_MAX_BYTES,
+  ATTACHMENT_MIMES,
+} from "@/lib/validations";
 import { notifyNewRequest } from "@/lib/notify";
 
 export type FormState = {
@@ -77,6 +82,30 @@ export async function submitConsultation(
     return { status: "error", fieldErrors: { form: "rate_limited" } };
   }
 
+  // Optional attachment: PDF or image, max 5 MB — stored in the database,
+  // never writable to the public filesystem and only served from the
+  // authenticated admin panel.
+  const file = formData.get("attachment");
+  let attachment: {
+    attachmentName: string;
+    attachmentMime: string;
+    attachmentData: Buffer;
+  } | undefined;
+  if (file instanceof File && file.size > 0) {
+    if (file.size > ATTACHMENT_MAX_BYTES) {
+      return { status: "error", fieldErrors: { attachment: "attachment_size" } };
+    }
+    if (!ATTACHMENT_MIMES.includes(file.type)) {
+      return { status: "error", fieldErrors: { attachment: "attachment_type" } };
+    }
+    const safeName = file.name.replace(/[\r\n\\/]/g, "_").slice(0, 200);
+    attachment = {
+      attachmentName: safeName,
+      attachmentMime: file.type,
+      attachmentData: Buffer.from(await file.arrayBuffer()),
+    };
+  }
+
   try {
     await db.consultationRequest.create({
       data: {
@@ -86,6 +115,7 @@ export async function submitConsultation(
         serviceId: data.serviceId || null,
         message: data.message,
         preferredContact: data.preferredContact,
+        ...attachment,
       },
     });
     notifyNewRequest({
@@ -95,6 +125,7 @@ export async function submitConsultation(
         `<strong>الهاتف:</strong> ${data.phone}`,
         data.email ? `<strong>البريد:</strong> ${data.email}` : "",
         `<strong>تفضيل التواصل:</strong> ${data.preferredContact}`,
+        attachment ? `<strong>مرفق:</strong> ${attachment.attachmentName}` : "",
         `<strong>الرسالة:</strong><br/>${data.message.replace(/\n/g, "<br/>")}`,
       ].filter(Boolean),
     });

@@ -70,6 +70,24 @@ export default async function RequestDetailPage({
             </p>
           </div>
 
+          {request.attachmentName && (
+            <div className="border border-charcoal-900/10 bg-white p-6">
+              <h2 className="text-sm font-semibold tracking-wider text-brass-600 uppercase">
+                المرفق
+              </h2>
+              <a
+                href={`/api/admin/attachments/${request.id}`}
+                className="mt-4 inline-flex items-center gap-3 border border-charcoal-900/15 px-4 py-3 text-sm font-medium text-charcoal-800 transition-colors hover:border-brass-500 hover:text-brass-600"
+              >
+                <Icon name="paperclip" className="size-4 text-brass-600" />
+                {request.attachmentName}
+                <span className="text-xs text-charcoal-600">
+                  {request.attachmentMime.includes("pdf") ? "PDF" : "صورة"}
+                </span>
+              </a>
+            </div>
+          )}
+
           <div className="border border-charcoal-900/10 bg-white p-6">
             <h2 className="text-sm font-semibold tracking-wider text-brass-600 uppercase">
               بيانات التواصل

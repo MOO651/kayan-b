@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   submitConsultation,
@@ -16,6 +16,12 @@ const initialState: FormState = { status: "idle" };
 const inputClasses =
   "w-full border border-charcoal-900/15 bg-white/60 px-4 py-3 text-sm text-charcoal-900 placeholder:text-charcoal-600/50 transition-colors focus:border-brass-500 focus:outline-none";
 
+const STEPS = [
+  { key: "step1Title", fields: ["name", "phone", "email"] },
+  { key: "step2Title", fields: ["service", "message"] },
+  { key: "step3Title", fields: [] },
+] as const;
+
 export function ConsultationForm({
   services,
   preselectedService,
@@ -28,6 +34,8 @@ export function ConsultationForm({
     submitConsultation,
     initialState,
   );
+  const [step, setStep] = useState(0);
+  const [fileName, setFileName] = useState("");
 
   if (state.status === "success") {
     return (
@@ -50,7 +58,7 @@ export function ConsultationForm({
     ) : null;
 
   return (
-    <form action={action} className="space-y-5" noValidate>
+    <form action={action} className="space-y-6" noValidate>
       {/* Honeypot */}
       <input
         type="text"
@@ -61,41 +69,80 @@ export function ConsultationForm({
         className="absolute -start-[9999px] size-0 opacity-0"
       />
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="c-name" className="mb-2 block text-sm font-semibold">
-            {t("name")} <span className="text-brass-600">*</span>
-          </label>
-          <input
-            id="c-name"
-            name="name"
-            type="text"
-            required
-            maxLength={100}
-            className={inputClasses}
-            autoComplete="name"
-          />
-          {err("name")}
-        </div>
-        <div>
-          <label htmlFor="c-phone" className="mb-2 block text-sm font-semibold">
-            {t("phone")} <span className="text-brass-600">*</span>
-          </label>
-          <input
-            id="c-phone"
-            name="phone"
-            type="tel"
-            required
-            maxLength={20}
-            dir="ltr"
-            className={cn(inputClasses, "text-start")}
-            autoComplete="tel"
-          />
-          {err("phone")}
-        </div>
-      </div>
+      {/* Step indicator */}
+      <ol
+        className="flex items-center gap-2"
+        aria-label={`${t("step")} ${step + 1} ${t("of")} ${STEPS.length}`}
+      >
+        {STEPS.map((s, i) => (
+          <li key={s.key} className="flex flex-1 items-center gap-2">
+            <span
+              aria-current={i === step ? "step" : undefined}
+              className={cn(
+                "flex size-8 shrink-0 items-center justify-center border text-xs font-bold transition-colors duration-300",
+                i < step && "border-brass-500 bg-brass-500 text-ink-950",
+                i === step && "border-brass-500 text-brass-600",
+                i > step && "border-charcoal-900/15 text-charcoal-600/50",
+              )}
+            >
+              {i < step ? <Icon name="check" className="size-4" /> : i + 1}
+            </span>
+            <span
+              className={cn(
+                "hidden text-xs font-semibold sm:block",
+                i === step ? "text-charcoal-900" : "text-charcoal-600/50",
+              )}
+            >
+              {t(s.key)}
+            </span>
+            {i < STEPS.length - 1 && (
+              <span
+                aria-hidden
+                className={cn(
+                  "h-px flex-1 transition-colors duration-500",
+                  i < step ? "bg-brass-500" : "bg-charcoal-900/10",
+                )}
+              />
+            )}
+          </li>
+        ))}
+      </ol>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      {/* Step 1 — identity */}
+      <div className={cn("space-y-5", step !== 0 && "hidden")}>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label htmlFor="c-name" className="mb-2 block text-sm font-semibold">
+              {t("name")} <span className="text-brass-600">*</span>
+            </label>
+            <input
+              id="c-name"
+              name="name"
+              type="text"
+              required
+              maxLength={100}
+              className={inputClasses}
+              autoComplete="name"
+            />
+            {err("name")}
+          </div>
+          <div>
+            <label htmlFor="c-phone" className="mb-2 block text-sm font-semibold">
+              {t("phone")} <span className="text-brass-600">*</span>
+            </label>
+            <input
+              id="c-phone"
+              name="phone"
+              type="tel"
+              required
+              maxLength={20}
+              dir="ltr"
+              className={cn(inputClasses, "text-start")}
+              autoComplete="tel"
+            />
+            {err("phone")}
+          </div>
+        </div>
         <div>
           <label htmlFor="c-email" className="mb-2 block text-sm font-semibold">
             {t("email")}
@@ -111,6 +158,10 @@ export function ConsultationForm({
           />
           {err("email")}
         </div>
+      </div>
+
+      {/* Step 2 — the case */}
+      <div className={cn("space-y-5", step !== 1 && "hidden")}>
         <div>
           <label
             htmlFor="c-service"
@@ -132,72 +183,151 @@ export function ConsultationForm({
             ))}
           </select>
         </div>
-      </div>
-
-      <div>
-        <label htmlFor="c-message" className="mb-2 block text-sm font-semibold">
-          {t("message")} <span className="text-brass-600">*</span>
-        </label>
-        <textarea
-          id="c-message"
-          name="message"
-          required
-          rows={5}
-          maxLength={2000}
-          className={cn(inputClasses, "resize-y")}
-        />
-        {err("message")}
-      </div>
-
-      <fieldset>
-        <legend className="mb-2 text-sm font-semibold">
-          {t("preferredContact")}
-        </legend>
-        <div className="flex flex-wrap gap-3">
-          {(
-            [
-              ["phone", "preferredPhone", "phone"],
-              ["email", "preferredEmail", "mail"],
-              ["whatsapp", "preferredWhatsapp", "whatsapp"],
-            ] as const
-          ).map(([value, labelKey, icon]) => (
-            <label
-              key={value}
-              className="flex cursor-pointer items-center gap-2 border border-charcoal-900/15 px-4 py-2.5 text-sm transition-colors has-checked:border-brass-500 has-checked:bg-brass-500/10 has-checked:text-brass-600"
-            >
-              <input
-                type="radio"
-                name="preferredContact"
-                value={value}
-                defaultChecked={value === "phone"}
-                className="sr-only"
-              />
-              <Icon name={icon} className="size-4" />
-              {t(labelKey)}
-            </label>
-          ))}
+        <div>
+          <label htmlFor="c-message" className="mb-2 block text-sm font-semibold">
+            {t("message")} <span className="text-brass-600">*</span>
+          </label>
+          <textarea
+            id="c-message"
+            name="message"
+            required
+            rows={5}
+            maxLength={2000}
+            className={cn(inputClasses, "resize-y")}
+          />
+          {err("message")}
         </div>
-      </fieldset>
+      </div>
 
-      {state.status === "error" && !state.fieldErrors && (
-        <p className="text-sm font-medium text-red-700" role="alert">
-          {t("error")}
-        </p>
-      )}
-      {state.fieldErrors?.form && (
-        <p className="text-sm font-medium text-red-700" role="alert">
-          {t("error")}
-        </p>
-      )}
+      {/* Step 3 — contact preference, attachment, submit */}
+      <div className={cn("space-y-5", step !== 2 && "hidden")}>
+        <fieldset>
+          <legend className="mb-2 text-sm font-semibold">
+            {t("preferredContact")}
+          </legend>
+          <div className="flex flex-wrap gap-3">
+            {(
+              [
+                ["phone", "preferredPhone", "phone"],
+                ["email", "preferredEmail", "mail"],
+                ["whatsapp", "preferredWhatsapp", "whatsapp"],
+              ] as const
+            ).map(([value, labelKey, icon]) => (
+              <label
+                key={value}
+                className="flex cursor-pointer items-center gap-2 border border-charcoal-900/15 px-4 py-2.5 text-sm transition-colors has-checked:border-brass-500 has-checked:bg-brass-500/10 has-checked:text-brass-600"
+              >
+                <input
+                  type="radio"
+                  name="preferredContact"
+                  value={value}
+                  defaultChecked={value === "phone"}
+                  className="sr-only"
+                />
+                <Icon name={icon} className="size-4" />
+                {t(labelKey)}
+              </label>
+            ))}
+          </div>
+        </fieldset>
 
-      <button
-        type="submit"
-        disabled={pending}
-        className="inline-flex w-full items-center justify-center gap-3 bg-charcoal-900 px-8 py-4 text-sm font-semibold text-ivory-50 transition-colors hover:bg-brass-600 disabled:opacity-60 sm:w-auto"
-      >
-        <Icon name="send" className="size-4" />
-        {pending ? t("sending") : t("submit")}
-      </button>
+        <div>
+          <label htmlFor="c-attachment" className="mb-2 block text-sm font-semibold">
+            {t("attachment")}
+          </label>
+          <label
+            htmlFor="c-attachment"
+            className="flex cursor-pointer items-center gap-3 border border-dashed border-charcoal-900/25 px-4 py-4 text-sm text-charcoal-600 transition-colors hover:border-brass-500 hover:text-brass-600"
+          >
+            <Icon name="paperclip" className="size-4 shrink-0" />
+            <span className="truncate">
+              {fileName || t("attachmentHint")}
+            </span>
+          </label>
+          <input
+            id="c-attachment"
+            name="attachment"
+            type="file"
+            accept="application/pdf,image/jpeg,image/png,image/webp"
+            className="sr-only"
+            onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+          />
+          {err("attachment")}
+        </div>
+
+        {state.status === "error" && !state.fieldErrors && (
+          <p className="text-sm font-medium text-red-700" role="alert">
+            {t("error")}
+          </p>
+        )}
+        {state.fieldErrors?.form && (
+          <p className="text-sm font-medium text-red-700" role="alert">
+            {t("error")}
+          </p>
+        )}
+        {/* Earlier-step validation errors → jump the user back to fix them */}
+        {STEPS.slice(0, 2).some((s) =>
+          s.fields.some((f) => state.fieldErrors?.[f]),
+        ) && step === 2
+          ? setStep(
+              STEPS.findIndex((s) => s.fields.some((f) => state.fieldErrors?.[f])),
+            )
+          : null}
+
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className="inline-flex items-center gap-2 border border-charcoal-900/25 px-6 py-3.5 text-sm font-semibold text-charcoal-900 transition-colors hover:border-brass-500 hover:text-brass-600"
+          >
+            <Icon name="arrow-left" className="size-4 ltr:rotate-180" />
+            {t("next")}
+          </button>
+        </div>
+      </div>
+
+      {/* Step navigation for steps 2 & 3 */}
+      {step === 1 && (
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => setStep(0)}
+            className="inline-flex items-center gap-2 border border-charcoal-900/25 px-6 py-3.5 text-sm font-semibold text-charcoal-900 transition-colors hover:border-brass-500 hover:text-brass-600"
+          >
+            <Icon name="arrow-left" className="size-4 rtl:rotate-180" />
+            {t("back")}
+          </button>
+          <button
+            type="button"
+            onClick={() => setStep(2)}
+            className="inline-flex items-center gap-2 bg-charcoal-900 px-6 py-3.5 text-sm font-semibold text-ivory-50 transition-colors hover:bg-brass-600"
+          >
+            {t("next")}
+            <Icon name="arrow-left" className="size-4 ltr:rotate-180" />
+          </button>
+        </div>
+      )}
+      {step === 2 && (
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            disabled={pending}
+            className="inline-flex items-center gap-2 border border-charcoal-900/25 px-6 py-3.5 text-sm font-semibold text-charcoal-900 transition-colors hover:border-brass-500 hover:text-brass-600 disabled:opacity-60"
+          >
+            <Icon name="arrow-left" className="size-4 rtl:rotate-180" />
+            {t("back")}
+          </button>
+          <button
+            type="submit"
+            disabled={pending}
+            className="inline-flex items-center gap-3 bg-charcoal-900 px-8 py-3.5 text-sm font-semibold text-ivory-50 transition-colors hover:bg-brass-600 disabled:opacity-60"
+          >
+            <Icon name="send" className="size-4" />
+            {pending ? t("sending") : t("submit")}
+          </button>
+        </div>
+      )}
     </form>
   );
 }
@@ -208,6 +338,8 @@ function errorMessage(
   code: string | undefined,
 ): string {
   if (code === "too_small") return t("tooShort");
+  if (code === "attachment_size") return t("attachmentSize");
+  if (code === "attachment_type") return t("attachmentType");
   if (code === "invalid_format" || code === "invalid_string") {
     if (field === "email") return t("invalidEmail");
     if (field === "phone") return t("invalidPhone");

@@ -27,13 +27,28 @@ export async function generateMetadata({
 
 export default async function ServicesPage({
   params,
+  searchParams,
 }: PageProps<"/[locale]/services">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("services");
+  const { q } = (await searchParams) as { q?: string };
 
+  const query = (q ?? "").trim();
   const services = await db.service.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      ...(query
+        ? {
+            OR: [
+              { titleAr: { contains: query } },
+              { titleEn: { contains: query } },
+              { excerptAr: { contains: query } },
+              { excerptEn: { contains: query } },
+            ],
+          }
+        : {}),
+    },
     orderBy: { order: "asc" },
   });
 
@@ -43,7 +58,42 @@ export default async function ServicesPage({
 
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Search */}
+          <Reveal className="max-w-md">
+            <form
+              action=""
+              method="get"
+              className="relative"
+              role="search"
+            >
+              <input
+                type="search"
+                name="q"
+                defaultValue={query}
+                placeholder={t("searchPlaceholder")}
+                aria-label={t("searchPlaceholder")}
+                className="w-full border border-charcoal-900/15 bg-white/60 py-3 ps-11 pe-4 text-sm focus:border-brass-500 focus:outline-none"
+              />
+              <Icon
+                name="search"
+                className="absolute start-4 top-1/2 size-4 -translate-y-1/2 text-charcoal-600/60"
+              />
+            </form>
+          </Reveal>
+
+          {services.length === 0 ? (
+            <Reveal className="py-20 text-center">
+              <Icon
+                name="scale"
+                className="mx-auto size-16 text-brass-500/40"
+                strokeWidth={1}
+              />
+              <p className="mt-6 text-lg text-charcoal-600">
+                {query ? t("noResults") : t("empty")}
+              </p>
+            </Reveal>
+          ) : (
+          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, i) => {
               const title =
                 locale === "ar"
@@ -88,6 +138,7 @@ export default async function ServicesPage({
               );
             })}
           </div>
+          )}
         </div>
       </section>
     </>

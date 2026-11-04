@@ -18,13 +18,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/terms",
   ];
 
-  const [services, articles] = await Promise.all([
+  const [services, articles, lawyers] = await Promise.all([
     db.service.findMany({
       where: { published: true },
       select: { slug: true, updatedAt: true },
     }),
     db.article.findMany({
       where: { published: true },
+      select: { slug: true, updatedAt: true },
+    }),
+    db.lawyer.findMany({
+      where: { visible: true, NOT: { slug: null } },
       select: { slug: true, updatedAt: true },
     }),
   ]);
@@ -76,6 +80,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           languages: {
             ar: `${siteUrl}/articles/${article.slug}`,
             en: `${siteUrl}/en/articles/${article.slug}`,
+          },
+        },
+      });
+    }
+  }
+
+  for (const path of ["/portfolio", "/team"]) {
+    for (const locale of ["ar", "en"] as const) {
+      entries.push({
+        url: `${siteUrl}${locale === "en" ? "/en" : ""}${path}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates: {
+          languages: {
+            ar: `${siteUrl}${path}`,
+            en: `${siteUrl}/en${path}`,
+          },
+        },
+      });
+    }
+  }
+
+  for (const lawyer of lawyers) {
+    for (const locale of ["ar", "en"] as const) {
+      entries.push({
+        url: `${siteUrl}${locale === "en" ? "/en" : ""}/team/${lawyer.slug}`,
+        lastModified: lawyer.updatedAt,
+        changeFrequency: "monthly",
+        priority: 0.5,
+        alternates: {
+          languages: {
+            ar: `${siteUrl}/team/${lawyer.slug}`,
+            en: `${siteUrl}/en/team/${lawyer.slug}`,
           },
         },
       });

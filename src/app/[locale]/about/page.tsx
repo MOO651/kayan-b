@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Icon } from "@/components/ui/Icon";
 import { getAbout } from "@/lib/settings";
 
@@ -59,14 +60,21 @@ export default async function AboutPage({
       {stats.length > 0 && (
         <section aria-label="أرقام المكتب" className="border-b border-charcoal-900/10 bg-ivory-100 py-12">
           <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 px-5 text-center lg:grid-cols-4 lg:px-8">
-            {stats.map((s) => (
-              <Reveal key={s.label}>
-                <p className="font-display text-4xl font-bold text-brass-600" dir="ltr">
-                  {s.value}
-                </p>
-                <p className="mt-2 text-sm text-charcoal-600">{s.label}</p>
-              </Reveal>
-            ))}
+            {stats.map((s) => {
+              const num = parseInt(s.value.replace(/[^\d]/g, ""), 10);
+              return (
+                <Reveal key={s.label}>
+                  <p className="font-display text-4xl font-bold text-brass-600" dir="ltr">
+                    {Number.isFinite(num) && num > 0 ? (
+                      <AnimatedCounter value={num} />
+                    ) : (
+                      s.value
+                    )}
+                  </p>
+                  <p className="mt-2 text-sm text-charcoal-600">{s.label}</p>
+                </Reveal>
+              );
+            })}
           </div>
         </section>
       )}
