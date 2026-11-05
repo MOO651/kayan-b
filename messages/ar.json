@@ -22,7 +22,8 @@
     "language": "English",
     "brandName": "أفاق",
     "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY",
-    "backToTop": "العودة إلى الأعلى"
+    "backToTop": "العودة إلى الأعلى",
+    "whatsapp": "واتساب"
   },
   "header": {
     "consultation": "اطلب استشارة",
@@ -184,7 +185,13 @@
         "text": "متابعة دؤوبة لكل قضية حتى تحقيق أفضل نتيجة ممكنة."
       }
     },
-    "cta": "تواصل معنا"
+    "cta": "تواصل معنا",
+    "stats": {
+      "cases": "قضية",
+      "years": "سنوات خبرة",
+      "team": "عضو في الفريق",
+      "clients": "عميل"
+    }
   },
   "articles": {
     "title": "المقالات والرؤى القانونية",
