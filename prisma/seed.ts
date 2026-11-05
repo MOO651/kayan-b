@@ -133,20 +133,21 @@ const services = [
 ];
 
 async function main() {
-  // Default admin account — change the password after first login.
-  const adminEmail = process.env.ADMIN_EMAIL ?? "admin@makkibashmeel.com";
-  const adminPassword = process.env.ADMIN_PASSWORD ?? "Admin@12345";
-
-  await db.user.upsert({
-    where: { email: adminEmail },
-    create: {
-      email: adminEmail,
-      name: "مدير الموقع",
-      passwordHash: hashPassword(adminPassword),
-      role: "ADMIN",
-    },
-    update: {},
-  });
+  // Create an initial administrator only when explicit credentials are supplied.
+  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (adminEmail && adminPassword) {
+    await db.user.upsert({
+      where: { email: adminEmail },
+      create: {
+        email: adminEmail,
+        name: "مدير الموقع",
+        passwordHash: hashPassword(adminPassword),
+        role: "ADMIN",
+      },
+      update: {},
+    });
+  }
 
   for (const service of services) {
     await db.service.upsert({
@@ -271,8 +272,9 @@ async function main() {
   }
 
   console.log("Seed completed.");
-  console.log(`Admin login: ${adminEmail} / ${adminPassword}`);
-  console.log("IMPORTANT: change the admin password after first login.");
+  if (!adminEmail || !adminPassword) {
+    console.log("No initial admin created; set ADMIN_EMAIL and ADMIN_PASSWORD explicitly when bootstrapping.");
+  }
 }
 
 main()
