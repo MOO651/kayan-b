@@ -4,7 +4,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import { put } from "@vercel/blob";
-import { getSession } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 const useBlob = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
@@ -19,8 +19,8 @@ const ALLOWED_TYPES = new Map<string, string>([
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
 export async function POST(request: Request) {
-  const session = await getSession();
-  if (!session) {
+  const user = await getCurrentUser();
+  if (!user) {
     return NextResponse.json({ error: "غير مصرح" }, { status: 401 });
   }
 
@@ -46,8 +46,15 @@ export async function POST(request: Request) {
   try {
     const buffer = Buffer.from(await file.arrayBuffer());
 
+    // Decode the actual file instead of trusting the client-supplied MIME type.
+    const image = sharp(buffer, { failOn: "error" });
+    const metadata = await image.metadata();
+    if (!metadata.format || !["jpeg", "png", "webp", "avif"].includes(metadata.format)) {
+      return NextResponse.json({ error: "محتوى الصورة غير مدعوم" }, { status: 400 });
+    }
+
     // Optimize: fix orientation, cap dimensions, convert to WebP
-    const optimized = await sharp(buffer)
+    const optimized = await image
       .rotate()
       .resize({ width: 2000, height: 2000, fit: "inside", withoutEnlargement: true })
       .webp({ quality: 82 })
