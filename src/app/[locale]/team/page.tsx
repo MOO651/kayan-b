@@ -105,7 +105,9 @@ export default async function TeamPage({
   });
 
   const legal = lawyers.filter((l) => l.category !== "DIGITAL");
-  const digital = lawyers.filter((l) => l.category === "DIGITAL");
+  const digital = lawyers.filter(
+    (l) => l.category === "DIGITAL" || l.role === "DIGITAL",
+  );
 
   return (
     <>

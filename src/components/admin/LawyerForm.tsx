@@ -29,6 +29,7 @@ type Lawyer = {
   phone: string;
   linkedin: string;
   category: string;
+  role: string;
   order: number;
   visible: boolean;
 };
@@ -98,7 +99,27 @@ export function LawyerForm({ lawyer }: { lawyer?: Lawyer }) {
               className="w-full border border-charcoal-900/20 bg-white px-3 py-2 text-sm text-charcoal-900 outline-none focus:border-brass-500"
             >
               <option value="LEGAL">الفريق القانوني (محامون ومستشارون)</option>
+              <option value="CONSULTANT">مستشار قانوني (مستقل)</option>
+              <option value="PARTNER">شريك</option>
               <option value="DIGITAL">التطوير والحلول الرقمية</option>
+            </select>
+          </Field>
+          <Field
+            label="المسمى الوظيفي المحدد"
+            name="role"
+            error={errors.role}
+            hint="مثال: محامٍ، مستشار قانوني، شريك، شريك التطوير والحلول الرقمية — سيظهر في الموقع"
+          >
+            <select
+              name="role"
+              defaultValue={lawyer?.role ?? ""}
+              className="w-full border border-charcoal-900/20 bg-white px-3 py-2 text-sm text-charcoal-900 outline-none focus:border-brass-500"
+            >
+              <option value="">— اختر —</option>
+              <option value="LAWYER">محامٍ</option>
+              <option value="CONSULTANT">مستشار قانوني</option>
+              <option value="PARTNER">شريك</option>
+              <option value="DIGITAL">شريك التطوير والحلول الرقمية</option>
             </select>
           </Field>
           <Field label="الترتيب" name="order" error={errors.order}>

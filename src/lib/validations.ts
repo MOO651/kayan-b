@@ -71,7 +71,8 @@ export const lawyerSchema = z.object({
   email: z.string().trim().max(150).default(""),
   phone: z.string().trim().max(30).default(""),
   linkedin: z.string().trim().max(300).default(""),
-  category: z.enum(["LEGAL", "DIGITAL"]).default("LEGAL"),
+  category: z.enum(["LEGAL", "DIGITAL", "PARTNER", "CONSULTANT"]).default("LEGAL"),
+  role: z.enum(["", "LAWYER", "CONSULTANT", "PARTNER", "DIGITAL"]).default(""),
   order: z.coerce.number().int().min(0).max(9999).default(0),
   visible: z.coerce.boolean().default(true),
 });

@@ -67,6 +67,11 @@ export async function TeamSection() {
                         {locale === "ar" ? "تطوير رقمي" : "Digital"}
                       </span>
                     )}
+                    {lawyer.category === "PARTNER" && lawyer.category !== "DIGITAL" && (
+                      <span className="mb-2 inline-block border border-brass-500/40 px-2 py-0.5 text-[0.6rem] font-semibold tracking-widest text-brass-300 uppercase">
+                        {locale === "ar" ? "شريك" : "Partner"}
+                      </span>
+                    )}
                     <h3 className="font-display text-lg font-semibold text-ivory-50">
                       {name}
                     </h3>

@@ -116,6 +116,7 @@ export async function saveLawyer(
     phone: str(formData, "phone"),
     linkedin: str(formData, "linkedin"),
     category: str(formData, "category") || "LEGAL",
+    role: str(formData, "role"),
     order: str(formData, "order"),
     visible: formData.get("visible") === "on",
   });

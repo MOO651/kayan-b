@@ -52,7 +52,8 @@ model Lawyer {
   email        String   @default("")
   phone        String   @default("")
   linkedin     String   @default("")
-  category     String   @default("LEGAL") // LEGAL | DIGITAL
+  category     String   @default("LEGAL") // LEGAL | DIGITAL | PARTNER | CONSULTANT
+  role         String   @default("") // LAWYER | CONSULTANT | PARTNER | DIGITAL
   order        Int      @default(0)
   visible      Boolean  @default(true)
   createdAt    DateTime @default(now())
