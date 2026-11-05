@@ -460,7 +460,7 @@ export async function changePassword(
   _prev: AdminState,
   formData: FormData,
 ): Promise<AdminState> {
-  const current = await requireAdmin();
+  const current = await requireUser();
   const id = str(formData, "id");
   const password = str(formData, "password");
   if (!id || password.length < 8) {
