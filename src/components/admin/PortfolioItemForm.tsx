@@ -100,9 +100,9 @@ export function PortfolioItemForm({ item }: { item?: PortfolioRow }) {
       />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
-          label="وسوم (مفصولة بفاصلة)"
+          label="تصنيف العمل (مفصول بفاصلة)"
           name="tags"
-          hint="مثال: تجاري, تحكيم"
+          hint="اكتب نوع كل عنصر لتسهيل عرضه: قضية، مشروع، إنجاز، تحكيم، شركات، شراكات. الشركاء كأعضاء فريق يُدارون من قسم المحامون والشركاء."
         >
           <TextInput name="tags" defaultValue={item?.tags} maxLength={200} />
         </Field>
