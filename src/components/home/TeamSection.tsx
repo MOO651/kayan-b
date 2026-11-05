@@ -8,6 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 
 export async function TeamSection() {
   const t = await getTranslations("home.team");
+  const tt = await getTranslations("team");
   const locale = await getLocale();
   const home = await getHome();
 
@@ -26,8 +27,8 @@ export async function TeamSection() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeading
           kicker={t("kicker")}
-          title={t("title")}
-          subtitle={t("subtitle")}
+          title={tt("title")}
+          subtitle={tt("subtitle")}
         />
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -61,6 +62,11 @@ export async function TeamSection() {
                     className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/80 to-transparent"
                   />
                   <div className="absolute inset-x-0 bottom-0 p-5">
+                    {lawyer.category === "DIGITAL" && (
+                      <span className="mb-2 inline-block border border-brass-500/40 px-2 py-0.5 text-[0.6rem] font-semibold tracking-widest text-brass-300 uppercase">
+                        {locale === "ar" ? "تطوير رقمي" : "Digital"}
+                      </span>
+                    )}
                     <h3 className="font-display text-lg font-semibold text-ivory-50">
                       {name}
                     </h3>

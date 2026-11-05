@@ -28,6 +28,7 @@ type Lawyer = {
   email: string;
   phone: string;
   linkedin: string;
+  category: string;
   order: number;
   visible: boolean;
 };
@@ -84,14 +85,21 @@ export function LawyerForm({ lawyer }: { lawyer?: Lawyer }) {
           defaultValue={lawyer?.photo}
           hint="صورة مهنية بخلفية هادئة، يُفضّل أبعاد 3:4."
         />
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-3">
           <Field
-            label="التخصصات"
-            name="specialties"
-            error={errors.specialties}
-            hint="افصل بين التخصصات بفاصلة، مثال: القانون الجنائي، التحكيم"
+            label="التصنيف"
+            name="category"
+            error={errors.category}
+            hint="الفريق القانوني أو فريق التطوير والحلول الرقمية"
           >
-            <TextInput name="specialties" defaultValue={lawyer?.specialties} maxLength={500} />
+            <select
+              name="category"
+              defaultValue={lawyer?.category ?? "LEGAL"}
+              className="w-full border border-charcoal-900/20 bg-white px-3 py-2 text-sm text-charcoal-900 outline-none focus:border-brass-500"
+            >
+              <option value="LEGAL">الفريق القانوني (محامون ومستشارون)</option>
+              <option value="DIGITAL">التطوير والحلول الرقمية</option>
+            </select>
           </Field>
           <Field label="الترتيب" name="order" error={errors.order}>
             <TextInput
@@ -102,6 +110,14 @@ export function LawyerForm({ lawyer }: { lawyer?: Lawyer }) {
             />
           </Field>
         </div>
+        <Field
+          label="التخصصات / مجالات العمل"
+          name="specialties"
+          error={errors.specialties}
+          hint="افصل بينها بفاصلة — مثال قانوني: القانون الجنائي، التحكيم — مثال رقمي: تطوير الويب، الحلول السحابية"
+        >
+          <TextInput name="specialties" defaultValue={lawyer?.specialties} maxLength={500} />
+        </Field>
         <Field
           label="الرابط الشخصي (slug)"
           name="slug"

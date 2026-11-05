@@ -52,6 +52,7 @@ model Lawyer {
   email        String   @default("")
   phone        String   @default("")
   linkedin     String   @default("")
+  category     String   @default("LEGAL") // LEGAL | DIGITAL
   order        Int      @default(0)
   visible      Boolean  @default(true)
   createdAt    DateTime @default(now())
@@ -160,6 +161,21 @@ model PortfolioItem {
   outcomeEn   String   @default("")
   image       String   @default("")
   tags        String   @default("")
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ExternalVenture {
+  id          String   @id @default(cuid())
+  nameAr      String
+  nameEn      String   @default("")
+  descAr      String   @default("")
+  descEn      String   @default("")
+  url         String
+  logo        String   @default("")
+  image       String   @default("")
   order       Int      @default(0)
   published   Boolean  @default(true)
   createdAt   DateTime @default(now())

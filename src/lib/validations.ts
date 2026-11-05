@@ -71,8 +71,25 @@ export const lawyerSchema = z.object({
   email: z.string().trim().max(150).default(""),
   phone: z.string().trim().max(30).default(""),
   linkedin: z.string().trim().max(300).default(""),
+  category: z.enum(["LEGAL", "DIGITAL"]).default("LEGAL"),
   order: z.coerce.number().int().min(0).max(9999).default(0),
   visible: z.coerce.boolean().default(true),
+});
+
+export const ventureSchema = z.object({
+  nameAr: z.string().trim().min(2).max(150),
+  nameEn: z.string().trim().max(150).default(""),
+  descAr: z.string().trim().max(600).default(""),
+  descEn: z.string().trim().max(600).default(""),
+  url: z
+    .string()
+    .trim()
+    .max(300)
+    .regex(/^https:\/\/[^\s]+$/, "https://…"),
+  logo: z.string().trim().max(500).default(""),
+  image: z.string().trim().max(500).default(""),
+  order: z.coerce.number().int().min(0).max(9999).default(0),
+  published: z.coerce.boolean().default(true),
 });
 
 export const articleSchema = z.object({

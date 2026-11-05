@@ -16,10 +16,10 @@ export default async function TeamAdminPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="font-display text-3xl font-bold text-charcoal-900">
-            فريق العمل
+            فريقنا وشركاؤنا
           </h1>
           <p className="mt-1 text-sm text-charcoal-600">
-            إدارة المحامين وأعضاء الفريق القانوني
+            إدارة المحامين والمستشارين والشركاء وفريق التطوير الرقمي
           </p>
         </div>
         <Link
@@ -27,7 +27,7 @@ export default async function TeamAdminPage() {
           className="inline-flex items-center gap-2 bg-charcoal-900 px-5 py-2.5 text-sm font-semibold text-ivory-50 transition-colors hover:bg-brass-600"
         >
           <Icon name="plus" className="size-4" />
-          إضافة عضو
+          إضافة عضو أو شريك
         </Link>
       </div>
 
@@ -68,7 +68,16 @@ export default async function TeamAdminPage() {
                 <p className="truncate text-xs text-charcoal-600">
                   {lawyer.titleAr || "—"}
                 </p>
-                <p className="mt-1 text-xs">
+                <p className="mt-1 text-xs flex items-center gap-2">
+                  <span
+                    className={
+                      lawyer.category === "DIGITAL"
+                        ? "inline-block bg-sky-100 px-1.5 py-0.5 text-[0.6rem] font-semibold text-sky-800"
+                        : "inline-block bg-brass-500/10 px-1.5 py-0.5 text-[0.6rem] font-semibold text-brass-700"
+                    }
+                  >
+                    {lawyer.category === "DIGITAL" ? "تطوير رقمي" : "قانوني"}
+                  </span>
                   {lawyer.visible ? (
                     <span className="font-semibold text-green-700">ظاهر</span>
                   ) : (

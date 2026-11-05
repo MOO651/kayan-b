@@ -14,6 +14,7 @@ import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { FaqSection } from "@/components/home/FaqSection";
 import { ConsultationCta } from "@/components/home/ConsultationCta";
 import { ContactSection } from "@/components/home/ContactSection";
+import { VenturesSection } from "@/components/home/VenturesSection";
 
 export default async function HomePage({
   params,
@@ -73,6 +74,7 @@ export default async function HomePage({
       {home.showFaq && <FaqSection />}
       <ConsultationCta />
       <ContactSection />
+      <VenturesSection />
     </>
   );
 }

@@ -138,12 +138,22 @@
     "related": "Other practice areas"
   },
   "team": {
-    "title": "Our Team",
-    "subtitle": "Our lawyers and legal consultants.",
+    "title": "Our Team & Partners",
+    "subtitle": "Our lawyers, consultants, and digital development team.",
+    "legalTitle": "Legal Team",
+    "digitalTitle": "Development & Digital Solutions",
+    "legalSubtitle": "Lawyers and legal consultants.",
+    "digitalSubtitle": "The firm's software development and digital solutions partners.",
     "specialties": "Specializations",
     "empty": "Our team members will be announced soon.",
     "viewProfile": "View profile",
     "bookConsultation": "Request a consultation"
+  },
+  "ventures": {
+    "kicker": "Our Group",
+    "title": "Explore Our Other Ventures",
+    "subtitle": "A selection of independent ventures, each with its own identity.",
+    "visit": "Visit website"
   },
   "about": {
     "historyTitle": "Our Story",

@@ -10,6 +10,7 @@ import {
   categorySchema,
   requestStatusSchema,
   userSchema,
+  ventureSchema,
 } from "@/lib/validations";
 import {
   setSettings,
@@ -114,6 +115,7 @@ export async function saveLawyer(
     email: str(formData, "email"),
     phone: str(formData, "phone"),
     linkedin: str(formData, "linkedin"),
+    category: str(formData, "category") || "LEGAL",
     order: str(formData, "order"),
     visible: formData.get("visible") === "on",
   });
@@ -135,6 +137,49 @@ export async function deleteLawyer(id: string): Promise<void> {
   await requireUser();
   await db.lawyer.delete({ where: { id } });
   revalidateSite();
+}
+
+// ---------- External ventures ----------
+
+export async function saveVenture(
+  _prev: AdminState,
+  formData: FormData,
+): Promise<AdminState> {
+  await requireUser();
+  const id = str(formData, "id");
+
+  const parsed = ventureSchema.safeParse({
+    nameAr: str(formData, "nameAr"),
+    nameEn: str(formData, "nameEn"),
+    descAr: str(formData, "descAr"),
+    descEn: str(formData, "descEn"),
+    url: str(formData, "url"),
+    logo: str(formData, "logo"),
+    image: str(formData, "image"),
+    order: str(formData, "order"),
+    published: formData.get("published") === "on",
+  });
+  if (!parsed.success) {
+    return { status: "error", fieldErrors: fieldErrorsFrom(parsed.error.issues) };
+  }
+
+  try {
+    if (id) await db.externalVenture.update({ where: { id }, data: parsed.data });
+    else await db.externalVenture.create({ data: parsed.data });
+  } catch {
+    return { status: "error" };
+  }
+
+  revalidateSite();
+  revalidatePath("/admin/ventures");
+  return { status: "success" };
+}
+
+export async function deleteVenture(id: string): Promise<void> {
+  await requireUser();
+  await db.externalVenture.delete({ where: { id } });
+  revalidateSite();
+  revalidatePath("/admin/ventures");
 }
 
 // ---------- Articles ----------
