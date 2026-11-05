@@ -21,7 +21,8 @@
     "language": "العربية",
     "brandName": "Afaq",
     "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "whatsapp": "WhatsApp"
   },
   "header": {
     "consultation": "Request a Consultation",
@@ -183,7 +184,13 @@
         "text": "Relentless follow-up on every case until the best possible outcome is achieved."
       }
     },
-    "cta": "Contact Us"
+    "cta": "Contact Us",
+    "stats": {
+      "cases": "Cases",
+      "years": "Years of experience",
+      "team": "Team members",
+      "clients": "Clients"
+    }
   },
   "articles": {
     "title": "Articles & Legal Insights",
