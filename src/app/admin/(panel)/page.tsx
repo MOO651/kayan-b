@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
+import { requireUser } from "@/lib/auth";
 import { Icon } from "@/components/ui/Icon";
 import { formatDate } from "@/lib/utils";
 
@@ -17,7 +18,7 @@ const statusStyles: Record<string, string> = {
   CLOSED: "bg-slate-100 text-slate-600 ring-slate-200",
 };
 
-export default async function AdminDashboard() {
+export default async function AdminDashboard() {\n  const currentUser = await requireUser();
   const [
     newRequests, totalRequests, publishedArticles, draftArticles,
     activeServices, recentRequests, lawyers, portfolio, faqs,
@@ -59,7 +60,7 @@ export default async function AdminDashboard() {
     { label: "آراء العملاء", hint: "الشهادات والتقييمات المعروضة", href: "/admin/testimonials", icon: "quote", count: testimonials },
     { label: "الأسئلة الشائعة", hint: "إجابات الزوار بالعربية والإنجليزية", href: "/admin/faq", icon: "inbox", count: faqs },
     { label: "مكتبة الوسائط", hint: "الصور والملفات المستخدمة بالموقع", href: "/admin/media", icon: "image", count: media },
-    { label: "إعدادات الموقع", hint: "الهوية والتواصل والصفحة الرئيسية", href: "/admin/settings", icon: "settings" },
+    ...(currentUser.role === "ADMIN" ? [\n      { label: "إعدادات الموقع", hint: "الهوية والتواصل والصفحة الرئيسية", href: "/admin/settings", icon: "settings" },\n      { label: "المستخدمون والصلاحيات", hint: "إضافة مديرين ومحررين وإدارة الحسابات", href: "/admin/users", icon: "shield" },\n    ] : []),
   ];
 
   return (
