@@ -17,8 +17,8 @@ const inputClasses =
   "w-full border border-charcoal-900/15 bg-white/60 px-4 py-3 text-sm text-charcoal-900 placeholder:text-charcoal-600/50 transition-colors focus:border-brass-500 focus:outline-none";
 
 const STEPS = [
-  { key: "step1Title", fields: ["name", "phone", "email"] },
-  { key: "step2Title", fields: ["service", "message"] },
+  { key: "step1Title", fields: ["name", "phone", "email", "country"] },
+  { key: "step2Title", fields: ["service", "message", "preferredDate"] },
   { key: "step3Title", fields: [] },
 ] as const;
 
@@ -153,6 +153,17 @@ export function ConsultationForm({
           </div>
         </div>
         <div>
+          <label htmlFor="c-country" className="mb-2 block text-sm font-semibold">
+            {t("country")}
+          </label>
+          <select id="c-country" name="country" defaultValue="Egypt" className={inputClasses}>
+            <option value="Egypt">{t("egypt")}</option>
+            <option value="Saudi Arabia">{t("saudiArabia")}</option>
+            <option value="Other">{t("otherCountry")}</option>
+          </select>
+          {err("country")}
+        </div>
+        <div>
           <label htmlFor="c-email" className="mb-2 block text-sm font-semibold">
             {t("email")}
           </label>
@@ -191,6 +202,13 @@ export function ConsultationForm({
               </option>
             ))}
           </select>
+        </div>
+        <div>
+          <label htmlFor="c-date" className="mb-2 block text-sm font-semibold">
+            {t("preferredDate")}
+          </label>
+          <input id="c-date" name="preferredDate" type="date" min={new Date().toISOString().slice(0, 10)} className={inputClasses} />
+          {err("preferredDate")}
         </div>
         <div>
           <label htmlFor="c-message" className="mb-2 block text-sm font-semibold">
