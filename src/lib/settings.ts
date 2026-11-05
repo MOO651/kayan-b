@@ -59,8 +59,8 @@ export type AboutSettings = {
 };
 
 export const defaultBrand: BrandSettings = {
-  brandNameAr: "مكي باشميل",
-  brandNameEn: "Makki Bashmeel",
+  brandNameAr: "أفاق",
+  brandNameEn: "Afaq",
   taglineAr: "للمحاماة والاستشارات القانونية",
   taglineEn: "Law Firm & Legal Consultancy",
   logo: "",

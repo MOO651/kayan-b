@@ -57,7 +57,7 @@ export function Logo({
         )}
       >
         <span className="font-display text-lg font-bold leading-none">
-          {locale === "ar" ? "ك" : "K"}
+        {name.trim().charAt(0)}
         </span>
       </span>
       {!compact && (

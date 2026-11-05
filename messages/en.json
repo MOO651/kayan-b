@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Makki Bashmeel | Law Firm & Legal Consultancy",
-    "description": "Makki Bashmeel Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt and Saudi Arabia."
+    "title": "Afaq | Law Firm & Legal Consultancy",
+    "description": "Afaq Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt and Saudi Arabia."
   },
   "nav": {
     "home": "Home",
@@ -19,7 +19,7 @@
     "loading": "Loading…",
     "backHome": "Back to homepage",
     "language": "العربية",
-    "brandName": "Makki Bashmeel",
+    "brandName": "Afaq",
     "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY",
     "backToTop": "Back to top"
   },
@@ -30,7 +30,7 @@
   },
   "hero": {
     "kicker": "Law Firm & Legal Consultancy",
-    "title": "Makki Bashmeel",
+    "title": "Afaq",
     "subtitle": "We provide legal services with integrity and precision, through a team of lawyers, defending our clients' rights and serving institutions, companies, and individuals across Egypt and Saudi Arabia.",
     "cta": "Request a Legal Consultation",
     "secondary": "Discover the Firm",
@@ -40,7 +40,7 @@
     "about": {
       "kicker": "About the Firm",
       "title": "Established legal expertise, unwavering professional commitment",
-      "text": "Makki Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
+      "text": "Afaq provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
       "philosophyTitle": "Our Philosophy",
       "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law.",
       "missionTitle": "Our Mission",
@@ -218,7 +218,7 @@
     "reviewTitle": "Review your request"
   },
   "footer": {
-    "about": "Makki Bashmeel Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",
+    "about": "Afaq Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",
     "quickLinks": "Quick Links",
     "services": "Practice Areas",
     "contact": "Contact",
@@ -228,9 +228,9 @@
   },
   "about": {
     "title": "About the Firm",
-    "subtitle": "Makki Bashmeel Law Firm & Legal Consultancy.",
+    "subtitle": "Afaq Law Firm & Legal Consultancy.",
     "introTitle": "Who We Are",
-    "intro": "Makki Bashmeel provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
+    "intro": "Afaq provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
     "philosophyTitle": "Our Philosophy",
     "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law. We treat every case as a trust, and every client as a partner in the pursuit of justice.",
     "missionTitle": "Our Mission",
@@ -248,7 +248,7 @@
     "title": "Privacy Policy",
     "updated": "Last updated",
     "sections": {
-      "intro": { "title": "Introduction", "text": "Makki Bashmeel Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information." },
+      "intro": { "title": "Introduction", "text": "Afaq Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information." },
       "collect": { "title": "Information We Collect", "text": "We collect information you voluntarily provide when filling in contact or consultation request forms, such as your name, phone number, email address, and a description of your legal matter. We do not collect any personal information without your knowledge." },
       "use": { "title": "How We Use Information", "text": "The information provided is used exclusively to communicate with you regarding your request or legal consultation and to deliver the requested legal services. We do not sell, rent, or share your information with any third party for marketing purposes." },
       "confidentiality": { "title": "Professional Confidentiality", "text": "All information relating to cases and legal consultations is subject to the professional confidentiality rules governing the legal profession, and is not disclosed except where required by law." },
