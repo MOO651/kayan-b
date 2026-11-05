@@ -1,53 +1,23 @@
 /**
- * Runs on Vercel builds: aligns the Prisma provider with DATABASE_URL,
- * pushes the schema and seeds the database (idempotent — safe to run on
- * every deploy).
- *
- * Local development uses SQLite (file:./dev.db). Production uses Postgres
- * (e.g. Neon/Vercel Postgres). The provider cannot be read from an env var
- * in schema.prisma, so we rewrite it here before generating the client —
- * the generated client must match the datasource provider.
+ * Build-time Prisma client generation only.
+ * Keep the generated client aligned with the production datasource provider.
+ * Schema changes are explicit reviewed operations, never destructive build steps.
  */
 import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 
-const url = process.env.DATABASE_URL ?? "";
+const url = process.env.DATABASE_URL_POOLED || process.env.DATABASE_URL || "";
 if (!url) {
-  console.log("DATABASE_URL not set — skipping database setup.");
-  process.exit(0);
+  console.log("No database URL configured; generating the default Prisma client.");
+} else {
+  const provider = url.startsWith("file:") ? "sqlite" : "postgresql";
+  const schemaPath = "prisma/schema.prisma";
+  const schema = readFileSync(schemaPath, "utf8");
+  const updated = schema.replace(
+    /provider\s*=\s*"(?:sqlite|postgresql)"/,
+    'provider = "' + provider + '"',
+  );
+  if (updated !== schema) writeFileSync(schemaPath, updated);
 }
 
-const isSqlite = url.startsWith("file:");
-const desired = isSqlite ? "sqlite" : "postgresql";
-const schemaPath = "prisma/schema.prisma";
-
-try {
-  let schema = readFileSync(schemaPath, "utf8");
-  if (!new RegExp(`provider\\s*=\\s*"${desired}"`).test(schema)) {
-    console.log(`Switching Prisma provider to "${desired}"…`);
-    schema = schema.replace(
-      /provider\s*=\s*"(?:sqlite|postgresql)"/,
-      `provider = "${desired}"`,
-    );
-    writeFileSync(schemaPath, schema);
-  }
-
-  console.log("Generating Prisma Client…");
-  execSync("npx prisma generate", { stdio: "inherit" });
-
-  console.log("Pushing Prisma schema…");
-  // --accept-data-loss: adding the Lawyer.slug unique constraint can warn
-  // about pre-existing duplicate slugs (only possible in old rows); the seed
-  // below re-runs anyway and slugs are validated on input.
-  execSync("npx prisma db push --skip-generate --accept-data-loss", {
-    stdio: "inherit",
-  });
-
-  console.log("Seeding database…");
-  execSync("npx tsx prisma/seed.ts", { stdio: "inherit" });
-
-  console.log("Database ready.");
-} catch (error) {
-  console.error("Database setup failed:", error);
-  process.exit(1);
-}
+execSync("npx prisma generate", { stdio: "inherit" });

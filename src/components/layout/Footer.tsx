@@ -142,7 +142,15 @@ export async function Footer() {
                   </a>
                 </li>
               )}
-              {!contact.addressAr && !contact.phone && !contact.email && (
+              {(contact.egyptAddressAr || contact.egyptPhone || contact.saudiAddressAr || contact.saudiPhone) && (
+                <li className="border-t border-ivory-50/10 pt-4">
+                  {contact.egyptAddressAr && <p className="mb-2 text-xs leading-6 text-ivory-100/70"><span className="font-semibold text-brass-400">مصر: </span>{locale === "ar" ? contact.egyptAddressAr : contact.egyptAddressEn || contact.egyptAddressAr}</p>}
+                  {contact.egyptPhone && <a href={`tel:${contact.egyptPhone}`} className="mb-2 block text-xs text-ivory-100/70" dir="ltr">{contact.egyptPhone}</a>}
+                  {contact.saudiAddressAr && <p className="mb-2 text-xs leading-6 text-ivory-100/70"><span className="font-semibold text-brass-400">السعودية: </span>{locale === "ar" ? contact.saudiAddressAr : contact.saudiAddressEn || contact.saudiAddressAr}</p>}
+                  {contact.saudiPhone && <a href={`tel:${contact.saudiPhone}`} className="block text-xs text-ivory-100/70" dir="ltr">{contact.saudiPhone}</a>}
+                </li>
+              )}
+              {!contact.addressAr && !contact.phone && !contact.email && !contact.egyptAddressAr && !contact.egyptPhone && !contact.saudiAddressAr && !contact.saudiPhone && (
                 <li>
                   <Link
                     href="/contact"

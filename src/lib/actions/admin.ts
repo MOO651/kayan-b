@@ -348,6 +348,14 @@ export async function saveContactSettings(
     addressAr: str(formData, "addressAr").trim(),
     addressEn: str(formData, "addressEn").trim(),
     mapEmbedUrl: str(formData, "mapEmbedUrl").trim(),
+    egyptPhone: str(formData, "egyptPhone").trim(),
+    egyptWhatsapp: str(formData, "egyptWhatsapp").trim(),
+    egyptAddressAr: str(formData, "egyptAddressAr").trim(),
+    egyptAddressEn: str(formData, "egyptAddressEn").trim(),
+    saudiPhone: str(formData, "saudiPhone").trim(),
+    saudiWhatsapp: str(formData, "saudiWhatsapp").trim(),
+    saudiAddressAr: str(formData, "saudiAddressAr").trim(),
+    saudiAddressEn: str(formData, "saudiAddressEn").trim(),
   };
   await setSettings("contact", value);
   revalidateSite();
@@ -460,7 +468,7 @@ export async function changePassword(
   _prev: AdminState,
   formData: FormData,
 ): Promise<AdminState> {
-  const current = await requireAdmin();
+  const current = await requireUser();
   const id = str(formData, "id");
   const password = str(formData, "password");
   if (!id || password.length < 8) {

@@ -17,8 +17,9 @@ export async function ContactSection() {
     { key: "instagram", url: social.instagram, icon: "instagram" },
   ].filter((s) => s.url);
 
+  const hasOfficeInfo = contact.egyptAddressAr || contact.egyptPhone || contact.egyptWhatsapp || contact.saudiAddressAr || contact.saudiPhone || contact.saudiWhatsapp;
   const hasInfo =
-    contact.addressAr || contact.phone || contact.email || contact.whatsapp;
+    contact.addressAr || contact.phone || contact.email || contact.whatsapp || hasOfficeInfo;
 
   return (
     <section className="bg-charcoal-900 py-24 lg:py-32">
@@ -111,6 +112,19 @@ export async function ContactSection() {
                   </li>
                 )}
               </ul>
+
+              {hasOfficeInfo && (
+                <div className="mt-10 grid gap-6 sm:grid-cols-2">
+                  {([["مكتب مصر", contact.egyptAddressAr, contact.egyptAddressEn, contact.egyptPhone, contact.egyptWhatsapp], ["مكتب المملكة العربية السعودية", contact.saudiAddressAr, contact.saudiAddressEn, contact.saudiPhone, contact.saudiWhatsapp]] as const).map(([label, addressAr, addressEn, phone, whatsapp]) => (addressAr || phone || whatsapp) ? (
+                    <div key={label} className="border border-brass-400/20 bg-white/[.03] p-5">
+                      <p className="text-sm font-semibold text-brass-300">{label}</p>
+                      {addressAr && <p className="mt-3 text-sm leading-7 text-ivory-100">{locale === "ar" ? addressAr : addressEn || addressAr}</p>}
+                      {phone && <a href={`tel:${phone}`} className="mt-3 block text-sm text-ivory-100/80 hover:text-brass-300" dir="ltr">{phone}</a>}
+                      {whatsapp && <a href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener noreferrer" className="mt-2 block text-sm text-ivory-100/80 hover:text-brass-300" dir="ltr">WhatsApp: {whatsapp}</a>}
+                    </div>
+                  ) : null)}
+                </div>
+              )}
 
               {socialLinks.length > 0 && (
                 <div className="mt-10">

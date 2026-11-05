@@ -23,8 +23,8 @@ npm run dev
 ### بيانات الدخول الافتراضية للوحة التحكم
 
 ```
-Email:    admin@makkibashmeel.com
-Password: Admin@12345
+Email:    Set ADMIN_EMAIL in your environment
+Password: Set ADMIN_PASSWORD in your environment
 ```
 
 > **مهم:** غيّر كلمة المرور فوراً بعد أول تسجيل دخول من صفحة «المستخدمون».
