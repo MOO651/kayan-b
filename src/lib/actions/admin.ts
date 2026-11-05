@@ -348,6 +348,14 @@ export async function saveContactSettings(
     addressAr: str(formData, "addressAr").trim(),
     addressEn: str(formData, "addressEn").trim(),
     mapEmbedUrl: str(formData, "mapEmbedUrl").trim(),
+    egyptPhone: str(formData, "egyptPhone").trim(),
+    egyptWhatsapp: str(formData, "egyptWhatsapp").trim(),
+    egyptAddressAr: str(formData, "egyptAddressAr").trim(),
+    egyptAddressEn: str(formData, "egyptAddressEn").trim(),
+    saudiPhone: str(formData, "saudiPhone").trim(),
+    saudiWhatsapp: str(formData, "saudiWhatsapp").trim(),
+    saudiAddressAr: str(formData, "saudiAddressAr").trim(),
+    saudiAddressEn: str(formData, "saudiAddressEn").trim(),
   };
   await setSettings("contact", value);
   revalidateSite();
