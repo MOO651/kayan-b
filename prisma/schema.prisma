@@ -96,6 +96,8 @@ model ConsultationRequest {
   name             String
   phone            String
   email            String   @default("")
+  country          String   @default("")
+  preferredDate    String   @default("")
   serviceId        String?
   service          Service? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
   message          String
