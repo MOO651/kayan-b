@@ -7,53 +7,48 @@ import { cn } from "@/lib/utils";
 import { Icon } from "@/components/ui/Icon";
 import { logout } from "@/lib/actions/auth";
 
-type NavItem = {
-  href: string;
-  label: string;
-  icon: string;
-  adminOnly?: boolean;
-};
-
-type NavGroup = {
-  title: string;
-  items: NavItem[];
-};
+type NavItem = { href: string; label: string; icon: string; adminOnly?: boolean };
+type NavGroup = { title: string; items: NavItem[] };
 
 const navGroups: NavGroup[] = [
-  {
-    title: "الرئيسية",
-    items: [
-      { href: "/admin", label: "لوحة المعلومات", icon: "dashboard" },
-      { href: "/admin/requests", label: "طلبات الاستشارة", icon: "inbox" },
-    ],
-  },
-  {
-    title: "المحتوى",
-    items: [
-      { href: "/admin/services", label: "المجالات القانونية", icon: "briefcase" },
-      { href: "/admin/team", label: "فريق العمل والشركاء – Team & Partners", icon: "users" },
-      { href: "/admin/ventures", label: "مشروعاتنا الأخرى – Other Ventures", icon: "briefcase" },
-      { href: "/admin/portfolio", label: "بورتفوليو المكتب", icon: "award" },
-      { href: "/admin/articles", label: "المقالات", icon: "article" },
-      { href: "/admin/categories", label: "التصنيفات", icon: "file-text" },
-    ],
-  },
-  {
-    title: "التفاعل",
-    items: [
-      { href: "/admin/testimonials", label: "آراء العملاء", icon: "quote" },
-      { href: "/admin/faq", label: "الأسئلة الشائعة", icon: "inbox" },
-    ],
-  },
-  {
-    title: "النظام",
-    items: [
-      { href: "/admin/media", label: "مكتبة الوسائط", icon: "image" },
-      { href: "/admin/settings", label: "إعدادات الموقع", icon: "settings", adminOnly: true },
-      { href: "/admin/users", label: "المستخدمون", icon: "shield", adminOnly: true },
-    ],
-  },
+  { title: "الرئيسية", items: [
+    { href: "/admin", label: "نظرة عامة", icon: "dashboard" },
+    { href: "/admin/requests", label: "طلبات الاستشارة", icon: "inbox" },
+  ]},
+  { title: "إدارة الموقع", items: [
+    { href: "/admin/services", label: "الخدمات القانونية", icon: "briefcase" },
+    { href: "/admin/team", label: "المحامون والشركاء", icon: "users" },
+    { href: "/admin/portfolio", label: "القضايا والإنجازات", icon: "award" },
+    { href: "/admin/ventures", label: "المشروعات والشركات", icon: "briefcase" },
+    { href: "/admin/articles", label: "المقالات والأخبار", icon: "article" },
+    { href: "/admin/categories", label: "تصنيفات المقالات", icon: "file-text" },
+  ]},
+  { title: "تفاعل الزوار", items: [
+    { href: "/admin/testimonials", label: "آراء العملاء", icon: "quote" },
+    { href: "/admin/faq", label: "الأسئلة الشائعة", icon: "inbox" },
+  ]},
+  { title: "إدارة النظام", items: [
+    { href: "/admin/media", label: "مكتبة الصور والملفات", icon: "image" },
+    { href: "/admin/settings", label: "إعدادات وهوية الموقع", icon: "settings", adminOnly: true },
+    { href: "/admin/users", label: "المستخدمون والصلاحيات", icon: "shield", adminOnly: true },
+  ]},
 ];
+
+const pageNames: Record<string, string> = {
+  "/admin": "نظرة عامة",
+  "/admin/requests": "طلبات الاستشارة",
+  "/admin/services": "الخدمات القانونية",
+  "/admin/team": "المحامون والشركاء",
+  "/admin/ventures": "المشروعات والشركات",
+  "/admin/portfolio": "القضايا والإنجازات",
+  "/admin/articles": "المقالات والأخبار",
+  "/admin/categories": "تصنيفات المقالات",
+  "/admin/testimonials": "آراء العملاء",
+  "/admin/faq": "الأسئلة الشائعة",
+  "/admin/media": "مكتبة الوسائط",
+  "/admin/settings": "إعدادات الموقع",
+  "/admin/users": "المستخدمون والصلاحيات",
+};
 
 export function AdminShell({
   user,
@@ -64,137 +59,125 @@ export function AdminShell({
 }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const groups = navGroups
-    .map((g) => ({
-      ...g,
-      items: g.items.filter((item) => !item.adminOnly || user.role === "ADMIN"),
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => !item.adminOnly || user.role === "ADMIN"),
     }))
-    .filter((g) => g.items.length > 0);
+    .filter((group) => group.items.length > 0);
+  const activeTitle =
+    pageNames[pathname] ??
+    Object.entries(pageNames).find(([href]) => href !== "/admin" && pathname.startsWith(href))?.[1] ??
+    "لوحة الإدارة";
 
   return (
-    <div className="flex min-h-svh">
-      {/* Sidebar */}
-      <aside
-        className={cn(
-          "fixed inset-y-0 start-0 z-40 flex w-64 flex-col bg-ink-950 text-ivory-100 transition-transform duration-300 lg:static lg:translate-x-0",
-          sidebarOpen
-            ? "translate-x-0"
-            : "-translate-x-full rtl:translate-x-full",
-        )}
-      >
-        <div className="flex items-center gap-3 border-b border-ivory-50/10 px-6 py-5">
-          <span className="relative flex size-9 shrink-0 items-center justify-center before:absolute before:inset-0 before:rotate-45 before:border before:border-brass-500">
-            <span className="font-display text-base font-bold text-brass-400">
-              ك
-            </span>
-          </span>
-          <div>
-            <p className="font-display text-lg font-bold leading-tight">
-              أفاق
-            </p>
-            <p className="text-[0.6rem] tracking-[0.2em] text-brass-400 uppercase">
-              لوحة التحكم
-            </p>
+    <div dir="rtl" className="min-h-svh bg-[#f5f4f0] text-[#17212b] lg:flex">
+      <aside className={cn(
+        "fixed inset-y-0 right-0 z-50 flex w-[286px] flex-col border-l border-white/10 bg-[#111d2a] text-white shadow-2xl transition-transform duration-300 lg:sticky lg:top-0 lg:h-svh lg:translate-x-0 lg:shadow-none",
+        sidebarOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0",
+      )}>
+        <div className="relative overflow-hidden border-b border-white/10 px-6 pb-6 pt-7">
+          <div className="pointer-events-none absolute -left-12 -top-16 size-40 rounded-full border border-[#c6a66b]/20" />
+          <div className="pointer-events-none absolute -left-5 -top-9 size-28 rounded-full border border-[#c6a66b]/10" />
+          <div className="relative flex items-center gap-3">
+            <span className="flex size-12 shrink-0 items-center justify-center border border-[#c6a66b]/70 bg-[#c6a66b]/10 font-serif text-2xl font-bold text-[#d8bd8c]">A</span>
+            <div>
+              <p className="font-serif text-xl font-semibold tracking-wide">أفاق</p>
+              <p className="mt-1 text-[10px] tracking-[.24em] text-[#c6a66b]">LEGAL ADMINISTRATION</p>
+            </div>
+          </div>
+          <div className="relative mt-6 border-r-2 border-[#c6a66b] pr-3">
+            <p className="text-sm font-semibold text-white">مركز إدارة المكتب</p>
+            <p className="mt-1 text-xs text-slate-400">مصر · المملكة العربية السعودية</p>
           </div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4">
+        <nav aria-label="القائمة الرئيسية" className="flex-1 space-y-7 overflow-y-auto px-4 py-6">
           {groups.map((group) => (
-            <div key={group.title} className="mb-5 last:mb-0">
-              <p className="px-4 pb-2 text-[0.6rem] font-semibold tracking-[0.2em] text-ivory-100/40 uppercase">
-                {group.title}
-              </p>
+            <section key={group.title}>
+              <p className="mb-2 px-3 text-[10px] font-bold tracking-[.18em] text-slate-500">{group.title}</p>
               <ul className="space-y-1">
                 {group.items.map((item) => {
-                  const active =
-                    item.href === "/admin"
-                      ? pathname === "/admin"
-                      : pathname.startsWith(item.href);
+                  const active = item.href === "/admin"
+                    ? pathname === "/admin"
+                    : pathname === item.href || pathname.startsWith(item.href + "/");
                   return (
                     <li key={item.href}>
                       <Link
                         href={item.href}
                         onClick={() => setSidebarOpen(false)}
-                        className={cn(
-                          "flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors",
-                          active
-                            ? "bg-brass-500/15 text-brass-300"
-                            : "text-ivory-100/70 hover:bg-ivory-50/5 hover:text-ivory-50",
-                        )}
                         aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "group flex items-center gap-3 rounded-xl px-3 py-3 text-[13px] font-medium transition-all",
+                          active
+                            ? "bg-[#c6a66b] text-[#111d2a] shadow-lg shadow-black/10"
+                            : "text-slate-300 hover:bg-white/[.06] hover:text-white",
+                        )}
                       >
-                        <Icon name={item.icon} className="size-4.5" />
-                        {item.label}
+                        <span className={cn("flex size-8 items-center justify-center rounded-lg", active ? "bg-black/10" : "bg-white/[.05] text-[#c6a66b] group-hover:bg-white/10")}>
+                          <Icon name={item.icon} className="size-4" />
+                        </span>
+                        <span className="flex-1">{item.label}</span>
+                        {active && <span className="size-1.5 rounded-full bg-[#111d2a]" />}
                       </Link>
                     </li>
                   );
                 })}
               </ul>
-            </div>
+            </section>
           ))}
         </nav>
 
-        <div className="border-t border-ivory-50/10 p-4">
-          <div className="flex items-center gap-3 px-2">
-            <span className="flex size-9 items-center justify-center rounded-full bg-brass-500/20 font-display text-sm font-bold text-brass-300">
+        <div className="border-t border-white/10 p-4">
+          <div className="flex items-center gap-3 rounded-xl bg-white/[.05] p-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-[#c6a66b]/50 bg-[#c6a66b]/10 font-serif text-lg font-bold text-[#d8bd8c]">
               {user.name.charAt(0)}
             </span>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold">{user.name}</p>
-              <p className="truncate text-xs text-ivory-100/50">
-                {user.role === "ADMIN" ? "مدير" : "محرر"}
-              </p>
+              <p className="mt-0.5 truncate text-[11px] text-slate-400">{user.role === "ADMIN" ? "مدير النظام" : "محرر محتوى"}</p>
             </div>
           </div>
-          <div className="mt-3 flex gap-2">
-            <Link
-              href="/"
-              target="_blank"
-              className="flex flex-1 items-center justify-center gap-2 border border-ivory-50/15 px-3 py-2 text-xs text-ivory-100/70 transition-colors hover:border-brass-400 hover:text-brass-300"
-            >
-              <Icon name="eye" className="size-3.5" />
-              عرض الموقع
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <Link href="/" target="_blank" className="flex items-center justify-center gap-2 rounded-lg border border-white/15 px-2 py-2.5 text-xs text-slate-300 transition hover:border-[#c6a66b] hover:text-[#d8bd8c]">
+              <Icon name="eye" className="size-3.5" /> الموقع
             </Link>
-            <form action={logout} className="flex-1">
-              <button
-                type="submit"
-                className="flex w-full items-center justify-center gap-2 border border-ivory-50/15 px-3 py-2 text-xs text-ivory-100/70 transition-colors hover:border-red-400 hover:text-red-300"
-              >
-                <Icon name="logout" className="size-3.5" />
-                خروج
+            <form action={logout}>
+              <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 px-2 py-2.5 text-xs text-slate-300 transition hover:border-red-400/60 hover:text-red-300">
+                <Icon name="logout" className="size-3.5" /> تسجيل الخروج
               </button>
             </form>
           </div>
         </div>
       </aside>
 
-      {/* Overlay for mobile */}
-      {sidebarOpen && (
-        <button
-          type="button"
-          aria-label="إغلاق القائمة"
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 z-30 bg-ink-950/60 lg:hidden"
-        />
-      )}
+      {sidebarOpen && <button type="button" aria-label="إغلاق القائمة" onClick={() => setSidebarOpen(false)} className="fixed inset-0 z-40 bg-[#08111b]/65 backdrop-blur-sm lg:hidden" />}
 
-      {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex items-center gap-4 border-b border-charcoal-900/10 bg-ivory-100/95 px-5 py-3 backdrop-blur-sm lg:px-8">
-          <button
-            type="button"
-            onClick={() => setSidebarOpen(true)}
-            aria-label="فتح القائمة"
-            className="flex size-10 items-center justify-center border border-charcoal-900/15 text-charcoal-800 lg:hidden"
-          >
-            <Icon name="menu" />
-          </button>
-          <p className="text-sm text-charcoal-600">
-            مرحباً، <span className="font-semibold">{user.name}</span>
-          </p>
+        <header className="sticky top-0 z-30 flex min-h-[76px] items-center justify-between gap-4 border-b border-[#17212b]/[.08] bg-white/90 px-4 backdrop-blur-xl sm:px-6 lg:px-10">
+          <div className="flex min-w-0 items-center gap-3">
+            <button type="button" onClick={() => setSidebarOpen(true)} aria-label="فتح القائمة" className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#17212b]/10 text-[#17212b] lg:hidden">
+              <Icon name="menu" />
+            </button>
+            <div className="min-w-0">
+              <p className="text-[10px] font-semibold tracking-[.16em] text-[#a1844e]">أفاق للمحاماة والاستشارات القانونية</p>
+              <h1 className="mt-1 truncate font-serif text-lg font-semibold text-[#17212b] sm:text-xl">{activeTitle}</h1>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-3">
+            <span className="hidden text-left sm:block">
+              <span className="block text-xs font-semibold text-[#17212b]">{user.name}</span>
+              <span className="mt-1 block text-[10px] text-slate-500">{user.role === "ADMIN" ? "مدير النظام" : "محرر"}</span>
+            </span>
+            <span className="flex size-10 items-center justify-center rounded-full bg-[#f0e8d9] font-serif font-bold text-[#8e7040]">{user.name.charAt(0)}</span>
+          </div>
         </header>
-        <main className="flex-1 px-5 py-8 lg:px-8">{children}</main>
+        <main className="w-full flex-1 px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
+          <div className="mx-auto w-full max-w-[1500px]">{children}</div>
+        </main>
+        <footer className="border-t border-[#17212b]/[.07] px-6 py-4 text-center text-[10px] text-slate-500">
+          أفاق للمحاماة والاستشارات القانونية · لوحة إدارة المحتوى
+        </footer>
       </div>
     </div>
   );
