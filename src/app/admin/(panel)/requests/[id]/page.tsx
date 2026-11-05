@@ -114,6 +114,14 @@ export default async function RequestDetailPage({
                 </dd>
               </div>
               <div>
+                <dt className="text-xs text-charcoal-600">الدولة</dt>
+                <dd className="mt-1 font-semibold text-charcoal-900">{request.country || "—"}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-charcoal-600">الموعد المفضل</dt>
+                <dd className="mt-1 font-semibold text-charcoal-900">{request.preferredDate || "غير محدد"}</dd>
+              </div>
+              <div>
                 <dt className="text-xs text-charcoal-600">المجال القانوني</dt>
                 <dd className="mt-1 font-semibold text-charcoal-900">
                   {request.service?.titleAr ?? "استفسار عام"}
