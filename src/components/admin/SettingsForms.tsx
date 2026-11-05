@@ -66,7 +66,7 @@ export function ContactSettingsForm({ contact }: { contact: ContactSettings }) {
     <form action={action} className="space-y-5">
       <FormMessage state={state} />
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="رقم الهاتف" name="phone">
+        <Field label="رقم الهاتف العام" name="phone">
           <TextInput name="phone" defaultValue={contact.phone} dir="ltr" maxLength={30} />
         </Field>
         <Field label="البريد الإلكتروني" name="email">
@@ -84,6 +84,26 @@ export function ContactSettingsForm({ contact }: { contact: ContactSettings }) {
         <Field label="العنوان (إنجليزي)" name="addressEn">
           <TextInput name="addressEn" defaultValue={contact.addressEn} dir="ltr" maxLength={300} />
         </Field>
+      </div>
+      <div className="border-t border-charcoal-900/10 pt-5">
+        <h3 className="font-display text-lg font-semibold text-charcoal-900">مكتب مصر</h3>
+        <p className="mt-1 text-xs text-charcoal-600">بيانات الفرع المصري التي تظهر لزوار الموقع.</p>
+        <div className="mt-4 grid gap-5 sm:grid-cols-2">
+          <Field label="عنوان مصر (عربي)" name="egyptAddressAr"><TextInput name="egyptAddressAr" defaultValue={contact.egyptAddressAr} maxLength={300} /></Field>
+          <Field label="عنوان مصر (إنجليزي)" name="egyptAddressEn"><TextInput name="egyptAddressEn" defaultValue={contact.egyptAddressEn} dir="ltr" maxLength={300} /></Field>
+          <Field label="هاتف مصر" name="egyptPhone"><TextInput name="egyptPhone" defaultValue={contact.egyptPhone} dir="ltr" maxLength={30} /></Field>
+          <Field label="واتساب مصر" name="egyptWhatsapp"><TextInput name="egyptWhatsapp" defaultValue={contact.egyptWhatsapp} dir="ltr" maxLength={30} /></Field>
+        </div>
+      </div>
+      <div className="border-t border-charcoal-900/10 pt-5">
+        <h3 className="font-display text-lg font-semibold text-charcoal-900">مكتب المملكة العربية السعودية</h3>
+        <p className="mt-1 text-xs text-charcoal-600">بيانات الفرع السعودي التي تظهر لزوار الموقع.</p>
+        <div className="mt-4 grid gap-5 sm:grid-cols-2">
+          <Field label="عنوان السعودية (عربي)" name="saudiAddressAr"><TextInput name="saudiAddressAr" defaultValue={contact.saudiAddressAr} maxLength={300} /></Field>
+          <Field label="عنوان السعودية (إنجليزي)" name="saudiAddressEn"><TextInput name="saudiAddressEn" defaultValue={contact.saudiAddressEn} dir="ltr" maxLength={300} /></Field>
+          <Field label="هاتف السعودية" name="saudiPhone"><TextInput name="saudiPhone" defaultValue={contact.saudiPhone} dir="ltr" maxLength={30} /></Field>
+          <Field label="واتساب السعودية" name="saudiWhatsapp"><TextInput name="saudiWhatsapp" defaultValue={contact.saudiWhatsapp} dir="ltr" maxLength={30} /></Field>
+        </div>
       </div>
       <SubmitButton />
     </form>
