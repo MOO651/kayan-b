@@ -128,6 +128,7 @@ export default async function RequestsAdminPage({
             <thead>
               <tr className="border-b border-charcoal-900/10 bg-ivory-100">
                 <th className="px-5 py-3 text-start text-xs font-semibold text-charcoal-600">العميل</th>
+                <th className="px-5 py-3 text-start text-xs font-semibold text-charcoal-600">الدولة</th>
                 <th className="px-5 py-3 text-start text-xs font-semibold text-charcoal-600">المجال</th>
                 <th className="px-5 py-3 text-start text-xs font-semibold text-charcoal-600">طريقة التواصل</th>
                 <th className="px-5 py-3 text-start text-xs font-semibold text-charcoal-600">الحالة</th>
@@ -146,6 +147,7 @@ export default async function RequestsAdminPage({
                       {request.phone}
                     </span>
                   </td>
+                  <td className="px-5 py-3.5 text-charcoal-600">{request.country || "—"}</td>
                   <td className="px-5 py-3.5 text-charcoal-600">
                     {request.service?.titleAr ?? "استفسار عام"}
                   </td>
