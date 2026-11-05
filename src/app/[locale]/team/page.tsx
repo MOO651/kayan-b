@@ -99,14 +99,23 @@ export default async function TeamPage({
   setRequestLocale(locale);
   const t = await getTranslations("team");
 
-  const lawyers = await db.lawyer.findMany({
+  const members = await db.lawyer.findMany({
     where: { visible: true },
     orderBy: { order: "asc" },
   });
 
-  const legal = lawyers.filter((l) => l.category !== "DIGITAL");
-  const digital = lawyers.filter(
-    (l) => l.category === "DIGITAL" || l.role === "DIGITAL",
+  const legal = members.filter(
+    (member) =>
+      member.category !== "DIGITAL" &&
+      member.role !== "DIGITAL" &&
+      member.category !== "PARTNER" &&
+      member.role !== "PARTNER",
+  );
+  const partners = members.filter(
+    (member) => member.category === "PARTNER" || member.role === "PARTNER",
+  );
+  const digital = members.filter(
+    (member) => member.category === "DIGITAL" || member.role === "DIGITAL",
   );
 
   return (
@@ -115,7 +124,7 @@ export default async function TeamPage({
 
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          {lawyers.length === 0 ? (
+          {members.length === 0 ? (
             <Reveal className="py-16 text-center">
               <Icon
                 name="users"
@@ -131,6 +140,18 @@ export default async function TeamPage({
                 locale={locale}
                 heading={t("legalTitle")}
                 subtitle={t("legalSubtitle")}
+                specialtiesLabel={t("specialties")}
+                viewProfileLabel={t("viewProfile")}
+              />
+              <TeamGrid
+                members={partners}
+                locale={locale}
+                heading={locale === "ar" ? "الشركاء" : "Partners"}
+                subtitle={
+                  locale === "ar"
+                    ? "شركاؤنا في العمل والرؤية."
+                    : "Our partners in work and vision."
+                }
                 specialtiesLabel={t("specialties")}
                 viewProfileLabel={t("viewProfile")}
               />
