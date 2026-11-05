@@ -156,13 +156,34 @@
     "visit": "Visit website"
   },
   "about": {
-    "historyTitle": "Our Story",
-    "stats": {
-      "years": "Years of experience",
-      "cases": "Successful cases",
-      "clients": "Clients",
-      "team": "Lawyers & consultants"
-    }
+    "title": "About the Firm",
+    "subtitle": "Afaq Law Firm & Legal Consultancy.",
+    "introTitle": "Who We Are",
+    "intro": "Afaq provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
+    "philosophyTitle": "Our Philosophy",
+    "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law. We treat every case as a trust, and every client as a partner in the pursuit of justice.",
+    "missionTitle": "Our Mission",
+    "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt and Saudi Arabia, through a team of lawyers combining practical experience with in-depth legal research.",
+    "valuesTitle": "Our Values",
+    "values": {
+      "integrity": {
+        "title": "Integrity",
+        "text": "Honesty and transparency are the foundation of our dealings with clients and the courts."
+      },
+      "precision": {
+        "title": "Precision",
+        "text": "Meticulous attention to every legal detail, however small it may seem."
+      },
+      "confidentiality": {
+        "title": "Confidentiality",
+        "text": "Complete protection of all client information and documents."
+      },
+      "commitment": {
+        "title": "Commitment",
+        "text": "Relentless follow-up on every case until the best possible outcome is achieved."
+      }
+    },
+    "cta": "Contact Us"
   },
   "articles": {
     "title": "Articles & Legal Insights",
@@ -225,7 +246,12 @@
     "attachmentHint": "PDF or image — max 5 MB",
     "attachmentSize": "File exceeds the 5 MB limit",
     "attachmentType": "Unsupported file type — PDF or images only",
-    "reviewTitle": "Review your request"
+    "reviewTitle": "Review your request",
+    "country": "Country",
+    "egypt": "Egypt",
+    "saudiArabia": "Saudi Arabia",
+    "otherCountry": "Other country",
+    "preferredDate": "Preferred date (optional)"
   },
   "footer": {
     "about": "Afaq Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",
@@ -236,50 +262,80 @@
     "privacy": "Privacy Policy",
     "terms": "Terms & Legal Notices"
   },
-  "about": {
-    "title": "About the Firm",
-    "subtitle": "Afaq Law Firm & Legal Consultancy.",
-    "introTitle": "Who We Are",
-    "intro": "Afaq provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
-    "philosophyTitle": "Our Philosophy",
-    "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law. We treat every case as a trust, and every client as a partner in the pursuit of justice.",
-    "missionTitle": "Our Mission",
-    "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt and Saudi Arabia, through a team of lawyers combining practical experience with in-depth legal research.",
-    "valuesTitle": "Our Values",
-    "values": {
-      "integrity": { "title": "Integrity", "text": "Honesty and transparency are the foundation of our dealings with clients and the courts." },
-      "precision": { "title": "Precision", "text": "Meticulous attention to every legal detail, however small it may seem." },
-      "confidentiality": { "title": "Confidentiality", "text": "Complete protection of all client information and documents." },
-      "commitment": { "title": "Commitment", "text": "Relentless follow-up on every case until the best possible outcome is achieved." }
-    },
-    "cta": "Contact Us"
-  },
   "privacy": {
     "title": "Privacy Policy",
     "updated": "Last updated",
     "sections": {
-      "intro": { "title": "Introduction", "text": "Afaq Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information." },
-      "collect": { "title": "Information We Collect", "text": "We collect information you voluntarily provide when filling in contact or consultation request forms, such as your name, phone number, email address, and a description of your legal matter. We do not collect any personal information without your knowledge." },
-      "use": { "title": "How We Use Information", "text": "The information provided is used exclusively to communicate with you regarding your request or legal consultation and to deliver the requested legal services. We do not sell, rent, or share your information with any third party for marketing purposes." },
-      "confidentiality": { "title": "Professional Confidentiality", "text": "All information relating to cases and legal consultations is subject to the professional confidentiality rules governing the legal profession, and is not disclosed except where required by law." },
-      "security": { "title": "Information Security", "text": "We take appropriate technical and organizational measures to protect your information from unauthorized access, alteration, disclosure, or destruction." },
-      "cookies": { "title": "Cookies", "text": "The website may use cookies strictly necessary for operating the site and improving the browsing experience only; we do not use them to track you for advertising purposes." },
-      "rights": { "title": "Your Rights", "text": "You have the right to request access to, correction of, or deletion of your personal data held by us by contacting us through the contact details shown on the website." },
-      "changes": { "title": "Changes to This Policy", "text": "We may update this policy from time to time, and any amendments will be posted on this page with an updated revision date." },
-      "contact": { "title": "Contact", "text": "For any inquiry related to the privacy policy, please contact us through the Contact Us page." }
+      "intro": {
+        "title": "Introduction",
+        "text": "Afaq Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information."
+      },
+      "collect": {
+        "title": "Information We Collect",
+        "text": "We collect information you voluntarily provide when filling in contact or consultation request forms, such as your name, phone number, email address, and a description of your legal matter. We do not collect any personal information without your knowledge."
+      },
+      "use": {
+        "title": "How We Use Information",
+        "text": "The information provided is used exclusively to communicate with you regarding your request or legal consultation and to deliver the requested legal services. We do not sell, rent, or share your information with any third party for marketing purposes."
+      },
+      "confidentiality": {
+        "title": "Professional Confidentiality",
+        "text": "All information relating to cases and legal consultations is subject to the professional confidentiality rules governing the legal profession, and is not disclosed except where required by law."
+      },
+      "security": {
+        "title": "Information Security",
+        "text": "We take appropriate technical and organizational measures to protect your information from unauthorized access, alteration, disclosure, or destruction."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "text": "The website may use cookies strictly necessary for operating the site and improving the browsing experience only; we do not use them to track you for advertising purposes."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "text": "You have the right to request access to, correction of, or deletion of your personal data held by us by contacting us through the contact details shown on the website."
+      },
+      "changes": {
+        "title": "Changes to This Policy",
+        "text": "We may update this policy from time to time, and any amendments will be posted on this page with an updated revision date."
+      },
+      "contact": {
+        "title": "Contact",
+        "text": "For any inquiry related to the privacy policy, please contact us through the Contact Us page."
+      }
     }
   },
   "terms": {
     "title": "Terms & Legal Notices",
     "updated": "Last updated",
     "sections": {
-      "intro": { "title": "Introduction", "text": "By using this website, you agree to these terms and legal notices. If you do not agree to any of these terms, please stop using the website." },
-      "noAdvice": { "title": "Website Content Is Not Legal Advice", "text": "The content published on this website, including articles and legal insights, is for general informational purposes only and does not constitute legal advice, nor does it create an attorney-client relationship. For legal advice regarding your specific matter, please contact us directly." },
-      "noRelationship": { "title": "Attorney-Client Relationship", "text": "An attorney-client relationship is only established upon signing a power of attorney or a legal services agreement with the firm. Merely sending a message or a consultation request through the website does not create this relationship." },
-      "ip": { "title": "Intellectual Property", "text": "All content of this website, including text, design, logos, and images, is owned by the firm or licensed to it, and may not be copied or republished without prior written permission." },
-      "liability": { "title": "Limitation of Liability", "text": "We exercise reasonable care to ensure the accuracy of the information published on the website; however, we do not guarantee it is error-free, and we accept no liability for any decisions made based on the general content published." },
-      "links": { "title": "External Links", "text": "The website may contain links to external websites whose content we do not control, and we accept no responsibility for the content or policies of those websites." },
-      "law": { "title": "Governing Law", "text": "These terms are governed by the laws of the Arab Republic of Egypt and Saudi Arabia, and the Egypt and Saudi Arabiaian courts have jurisdiction over any dispute arising from the use of this website." }
+      "intro": {
+        "title": "Introduction",
+        "text": "By using this website, you agree to these terms and legal notices. If you do not agree to any of these terms, please stop using the website."
+      },
+      "noAdvice": {
+        "title": "Website Content Is Not Legal Advice",
+        "text": "The content published on this website, including articles and legal insights, is for general informational purposes only and does not constitute legal advice, nor does it create an attorney-client relationship. For legal advice regarding your specific matter, please contact us directly."
+      },
+      "noRelationship": {
+        "title": "Attorney-Client Relationship",
+        "text": "An attorney-client relationship is only established upon signing a power of attorney or a legal services agreement with the firm. Merely sending a message or a consultation request through the website does not create this relationship."
+      },
+      "ip": {
+        "title": "Intellectual Property",
+        "text": "All content of this website, including text, design, logos, and images, is owned by the firm or licensed to it, and may not be copied or republished without prior written permission."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "text": "We exercise reasonable care to ensure the accuracy of the information published on the website; however, we do not guarantee it is error-free, and we accept no liability for any decisions made based on the general content published."
+      },
+      "links": {
+        "title": "External Links",
+        "text": "The website may contain links to external websites whose content we do not control, and we accept no responsibility for the content or policies of those websites."
+      },
+      "law": {
+        "title": "Governing Law",
+        "text": "These terms are governed by the laws of the Arab Republic of Egypt and Saudi Arabia, and the Egypt and Saudi Arabiaian courts have jurisdiction over any dispute arising from the use of this website."
+      }
     }
   },
   "notFound": {
