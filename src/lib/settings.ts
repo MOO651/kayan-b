@@ -17,6 +17,14 @@ export type ContactSettings = {
   addressAr: string;
   addressEn: string;
   mapEmbedUrl: string;
+  egyptPhone: string;
+  egyptWhatsapp: string;
+  egyptAddressAr: string;
+  egyptAddressEn: string;
+  saudiPhone: string;
+  saudiWhatsapp: string;
+  saudiAddressAr: string;
+  saudiAddressEn: string;
 };
 
 export type SocialSettings = {
@@ -73,6 +81,14 @@ export const defaultContact: ContactSettings = {
   addressAr: "",
   addressEn: "",
   mapEmbedUrl: "",
+  egyptPhone: "",
+  egyptWhatsapp: "",
+  egyptAddressAr: "",
+  egyptAddressEn: "",
+  saudiPhone: "",
+  saudiWhatsapp: "",
+  saudiAddressAr: "",
+  saudiAddressEn: "",
 };
 
 export const defaultSocial: SocialSettings = {
