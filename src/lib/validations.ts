@@ -12,6 +12,8 @@ export const consultationSchema = z.object({
     .max(150)
     .or(z.literal(""))
     .default(""),
+  country: z.string().trim().max(60).default(""),
+  preferredDate: z.string().trim().max(20).default(""),
   serviceId: z.string().trim().max(50).default(""),
   message: z.string().trim().min(10).max(2000),
   preferredContact: z.enum(["phone", "email", "whatsapp"]).default("phone"),
