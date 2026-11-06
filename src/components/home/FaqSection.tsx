@@ -17,7 +17,8 @@ export async function FaqSection() {
 
   const items: FaqItem[] = rows.map((row) => ({
     id: row.id,
-    question: locale === "ar" ? row.questionAr : row.questionEn || row.questionAr,
+    question:
+      locale === "ar" ? row.questionAr : row.questionEn || row.questionAr,
     answer: locale === "ar" ? row.answerAr : row.answerEn || row.answerAr,
   }));
 

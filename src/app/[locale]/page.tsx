@@ -27,7 +27,7 @@ export default async function HomePage({
     getContact(),
     getHome(),
   ]);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kayan-b.vercel.app";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LegalService",

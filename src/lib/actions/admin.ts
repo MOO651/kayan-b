@@ -325,8 +325,8 @@ export async function saveBrandSettings(
 ): Promise<AdminState> {
   await requireAdmin();
   const value: BrandSettings = {
-    brandNameAr: str(formData, "brandNameAr").trim() || "أفاق",
-    brandNameEn: str(formData, "brandNameEn").trim() || "Afaq",
+    brandNameAr: str(formData, "brandNameAr").trim() || "مكي و باشميل",
+    brandNameEn: str(formData, "brandNameEn").trim() || "Mekky & Bashmeil",
     taglineAr: str(formData, "taglineAr").trim(),
     taglineEn: str(formData, "taglineEn").trim(),
     logo: str(formData, "logo").trim(),

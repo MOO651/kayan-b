@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Afaq | Law Firm & Legal Consultancy",
-    "description": "Afaq Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt and Saudi Arabia."
+    "title": "Mekky & Bashmeil | Law Firm & Legal Consultancy",
+    "description": "Mekky & Bashmeil Law Firm & Legal Consultancy — legal services delivered with integrity and precision for individuals, companies, and institutions across Egypt and Saudi Arabia."
   },
   "nav": {
     "home": "Home",
@@ -10,16 +10,17 @@
     "team": "Our Team",
     "articles": "Legal Insights",
     "consultation": "Request a Consultation",
-    "contact": "Contact Us"
+    "contact": "Contact Us",
+    "portfolio": "Portfolio"
   },
   "common": {
     "readMore": "Read more",
     "viewAll": "View all",
     "details": "Details",
-    "loading": "Loading…",
+    "loading": "Loadingâ€¦",
     "backHome": "Back to homepage",
-    "language": "العربية",
-    "brandName": "Afaq",
+    "language": "ط§ظ„ط¹ط±ط¨ظٹط©",
+    "brandName": "Mekky & Bashmeil",
     "brandTagline": "LEGAL — LAW FIRM & CONSULTANCY",
     "backToTop": "Back to top",
     "whatsapp": "WhatsApp"
@@ -31,7 +32,7 @@
   },
   "hero": {
     "kicker": "Law Firm & Legal Consultancy",
-    "title": "Afaq",
+    "title": "Mekky & Bashmeil",
     "subtitle": "We provide legal services with integrity and precision, through a team of lawyers, defending our clients' rights and serving institutions, companies, and individuals across Egypt and Saudi Arabia.",
     "cta": "Request a Legal Consultation",
     "secondary": "Discover the Firm",
@@ -41,7 +42,7 @@
     "about": {
       "kicker": "About the Firm",
       "title": "Established legal expertise, unwavering professional commitment",
-      "text": "Afaq provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
+      "text": "Mekky & Bashmeil provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
       "philosophyTitle": "Our Philosophy",
       "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law.",
       "missionTitle": "Our Mission",
@@ -132,7 +133,7 @@
     "title": "Practice Areas",
     "subtitle": "Integrated legal services for individuals, companies, and institutions in Egypt and Saudi Arabia.",
     "consultCta": "Request a consultation in this area",
-    "searchPlaceholder": "Search practice areas…",
+    "searchPlaceholder": "Search practice areasâ€¦",
     "noResults": "No results match your search.",
     "empty": "Practice areas will be published soon.",
     "backToServices": "Back to practice areas",
@@ -158,11 +159,12 @@
   },
   "about": {
     "title": "About the Firm",
-    "subtitle": "Afaq Law Firm & Legal Consultancy.",
+    "subtitle": "Mekky & Bashmeil Law Firm & Legal Consultancy.",
     "introTitle": "Who We Are",
-    "intro": "Afaq provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
+    "intro": "Mekky & Bashmeil provides legal services with integrity and precision, through a team of lawyers, defending clients' rights and delivering legal services to institutions, companies, and individuals in Egypt and Saudi Arabia.",
     "philosophyTitle": "Our Philosophy",
     "philosophy": "We believe that the practice of law is a mission before it is a profession — a mission founded on integrity, precision, and full commitment to our clients' interests within the rule of law. We treat every case as a trust, and every client as a partner in the pursuit of justice.",
+    "historyTitle": "Our Journey",
     "missionTitle": "Our Mission",
     "mission": "To deliver first-class legal services that protect our clients' rights and support institutions, companies, and individuals across Egypt and Saudi Arabia, through a team of lawyers combining practical experience with in-depth legal research.",
     "valuesTitle": "Our Values",
@@ -195,7 +197,7 @@
   "articles": {
     "title": "Articles & Legal Insights",
     "subtitle": "Articles and legal analysis from our team.",
-    "search": "Search articles…",
+    "search": "Search articlesâ€¦",
     "all": "All",
     "empty": "No published articles at the moment.",
     "noResults": "No results match your search.",
@@ -234,7 +236,7 @@
     "preferredWhatsapp": "WhatsApp",
     "submit": "Submit Request",
     "submitContact": "Send Message",
-    "sending": "Sending…",
+    "sending": "Sendingâ€¦",
     "success": "Your request has been received successfully. Our team will contact you shortly.",
     "successContact": "Your message has been sent successfully. Thank you for contacting us.",
     "error": "An error occurred while submitting. Please try again.",
@@ -261,7 +263,7 @@
     "preferredDate": "Preferred date (optional)"
   },
   "footer": {
-    "about": "Afaq Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",
+    "about": "Mekky & Bashmeil Law Firm & Legal Consultancy — legal services with integrity and precision for institutions, companies, and individuals in Egypt and Saudi Arabia.",
     "quickLinks": "Quick Links",
     "services": "Practice Areas",
     "contact": "Contact",
@@ -275,7 +277,7 @@
     "sections": {
       "intro": {
         "title": "Introduction",
-        "text": "Afaq Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information."
+        "text": "Mekky & Bashmeil Law Firm respects the privacy of its website visitors and clients, and is committed to protecting any personal information shared with us through this website. This policy explains how we collect, use, and protect information."
       },
       "collect": {
         "title": "Information We Collect",

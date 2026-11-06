@@ -47,7 +47,11 @@ export function VentureForm({ venture }: { venture?: VentureRow }) {
           required
           error={errors.nameAr}
         >
-          <TextInput name="nameAr" defaultValue={venture?.nameAr} maxLength={150} />
+          <TextInput
+            name="nameAr"
+            defaultValue={venture?.nameAr}
+            maxLength={150}
+          />
         </Field>
         <Field label="الاسم (إنجليزي)" name="nameEn">
           <TextInput
@@ -62,7 +66,12 @@ export function VentureForm({ venture }: { venture?: VentureRow }) {
         <TextArea name="descAr" defaultValue={venture?.descAr} rows={3} />
       </Field>
       <Field label="الوصف المختصر (إنجليزي)" name="descEn">
-        <TextArea name="descEn" defaultValue={venture?.descEn} rows={3} dir="ltr" />
+        <TextArea
+          name="descEn"
+          defaultValue={venture?.descEn}
+          rows={3}
+          dir="ltr"
+        />
       </Field>
       <Field
         label="رابط الموقع"

@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { getLocale } from "next-intl/server";
@@ -29,9 +30,12 @@ export async function PortfolioSection() {
 
         <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, i) => {
-            const title = locale === "ar" ? item.titleAr : item.titleEn || item.titleAr;
+            const title =
+              locale === "ar" ? item.titleAr : item.titleEn || item.titleAr;
             const summary =
-              locale === "ar" ? item.summaryAr : item.summaryEn || item.summaryAr;
+              locale === "ar"
+                ? item.summaryAr
+                : item.summaryEn || item.summaryAr;
             return (
               <Reveal
                 key={item.id}
@@ -50,7 +54,11 @@ export async function PortfolioSection() {
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center">
-                      <Icon name="briefcase" className="size-12 text-brass-500/30" strokeWidth={1} />
+                      <Icon
+                        name="briefcase"
+                        className="size-12 text-brass-500/30"
+                        strokeWidth={1}
+                      />
                     </div>
                   )}
                 </div>

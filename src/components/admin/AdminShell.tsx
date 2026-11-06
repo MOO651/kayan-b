@@ -80,9 +80,9 @@ export function AdminShell({
           <div className="pointer-events-none absolute -left-12 -top-16 size-40 rounded-full border border-[#c6a66b]/20" />
           <div className="pointer-events-none absolute -left-5 -top-9 size-28 rounded-full border border-[#c6a66b]/10" />
           <div className="relative flex items-center gap-3">
-            <span className="flex size-12 shrink-0 items-center justify-center border border-[#c6a66b]/70 bg-[#c6a66b]/10 font-serif text-2xl font-bold text-[#d8bd8c]">A</span>
+            <span className="flex size-12 shrink-0 items-center justify-center border border-[#c6a66b]/70 bg-[#c6a66b]/10 font-serif text-2xl font-bold text-[#d8bd8c]">م</span>
             <div>
-              <p className="font-serif text-xl font-semibold tracking-wide">أفاق</p>
+              <p className="font-serif text-xl font-semibold tracking-wide">مكي و باشميل</p>
               <p className="mt-1 text-[10px] tracking-[.24em] text-[#c6a66b]">LEGAL ADMINISTRATION</p>
             </div>
           </div>
@@ -160,7 +160,7 @@ export function AdminShell({
               <Icon name="menu" />
             </button>
             <div className="min-w-0">
-              <p className="text-[10px] font-semibold tracking-[.16em] text-[#a1844e]">أفاق للمحاماة والاستشارات القانونية</p>
+              <p className="text-[10px] font-semibold tracking-[.16em] text-[#a1844e]">مكتب مكي و باشميل للمحاماة والاستشارات القانونية</p>
               <h1 className="mt-1 truncate font-serif text-lg font-semibold text-[#17212b] sm:text-xl">{activeTitle}</h1>
             </div>
           </div>
@@ -176,7 +176,7 @@ export function AdminShell({
           <div className="mx-auto w-full max-w-[1500px]">{children}</div>
         </main>
         <footer className="border-t border-[#17212b]/[.07] px-6 py-4 text-center text-[10px] text-slate-500">
-          أفاق للمحاماة والاستشارات القانونية · لوحة إدارة المحتوى
+          مكتب مكي و باشميل للمحاماة والاستشارات القانونية · لوحة إدارة المحتوى
         </footer>
       </div>
     </div>

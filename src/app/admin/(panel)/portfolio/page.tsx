@@ -33,12 +33,21 @@ export default async function PortfolioAdminPage() {
         <div className="space-y-4 lg:col-span-2">
           {items.length === 0 ? (
             <div className="border border-dashed border-charcoal-900/20 bg-white px-6 py-16 text-center">
-              <Icon name="briefcase" className="mx-auto size-12 text-charcoal-600/30" strokeWidth={1} />
-              <p className="mt-4 text-sm text-charcoal-600">لا توجد عناصر بعد.</p>
+              <Icon
+                name="briefcase"
+                className="mx-auto size-12 text-charcoal-600/30"
+                strokeWidth={1}
+              />
+              <p className="mt-4 text-sm text-charcoal-600">
+                لا توجد عناصر بعد.
+              </p>
             </div>
           ) : (
             items.map((item) => (
-              <details key={item.id} className="border border-charcoal-900/10 bg-white">
+              <details
+                key={item.id}
+                className="border border-charcoal-900/10 bg-white"
+              >
                 <summary className="cursor-pointer list-none px-6 py-4 text-sm font-semibold text-charcoal-900 hover:text-brass-600">
                   {item.published ? "" : "🚫 "}
                   {item.titleAr}

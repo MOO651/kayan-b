@@ -178,6 +178,16 @@ export function ConsultationForm({
           />
           {err("email")}
         </div>
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className="inline-flex items-center gap-2 bg-charcoal-900 px-6 py-3.5 text-sm font-semibold text-ivory-50 transition-colors hover:bg-brass-600"
+          >
+            {t("next")}
+            <Icon name="arrow-left" className="size-4 ltr:rotate-180" />
+          </button>
+        </div>
       </div>
 
       {/* Step 2 — the case */}

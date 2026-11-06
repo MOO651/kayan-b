@@ -159,8 +159,8 @@ async function main() {
 
   const settings: Record<string, unknown> = {
     brand: {
-      brandNameAr: "مكي باشميل",
-      brandNameEn: "Makki Bashmeel",
+      brandNameAr: "مكي و باشميل",
+      brandNameEn: "Mekky & Bashmeil",
       taglineAr: "للمحاماة والاستشارات القانونية",
       taglineEn: "Law Firm & Legal Consultancy",
       logo: "",

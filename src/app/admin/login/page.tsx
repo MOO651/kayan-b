@@ -26,7 +26,7 @@ export default async function LoginPage({
               لوحة التحكم
             </h1>
             <p className="mt-2 text-sm text-ivory-100/60">
-              تسجيل الدخول لإدارة موقع أفاق
+              تسجيل الدخول لإدارة موقع مكي و باشميل
             </p>
           </div>
           <div className="mt-8">

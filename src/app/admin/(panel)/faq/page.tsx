@@ -33,8 +33,14 @@ export default async function FaqAdminPage() {
         <div className="space-y-4 lg:col-span-2">
           {faqs.length === 0 ? (
             <div className="border border-dashed border-charcoal-900/20 bg-white px-6 py-16 text-center">
-              <Icon name="file-text" className="mx-auto size-12 text-charcoal-600/30" strokeWidth={1} />
-              <p className="mt-4 text-sm text-charcoal-600">لا توجد أسئلة بعد.</p>
+              <Icon
+                name="file-text"
+                className="mx-auto size-12 text-charcoal-600/30"
+                strokeWidth={1}
+              />
+              <p className="mt-4 text-sm text-charcoal-600">
+                لا توجد أسئلة بعد.
+              </p>
             </div>
           ) : (
             faqs.map((faq, i) => (

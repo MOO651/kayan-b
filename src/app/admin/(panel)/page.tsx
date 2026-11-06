@@ -74,7 +74,7 @@ export default async function AdminDashboard() {
         <div className="pointer-events-none absolute -left-1 top-0 size-48 rounded-full border border-[#c6a66b]/10" />
         <div className="relative flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="text-[10px] font-semibold tracking-[.22em] text-[#d4b77f]">AFaq · MANAGEMENT OVERVIEW</p>
+            <p className="text-[10px] font-semibold tracking-[.22em] text-[#d4b77f]">Mekky & Bashmeil · MANAGEMENT OVERVIEW</p>
             <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">مرحباً بك في مركز الإدارة</h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">من هنا تقدر تدير محتوى الموقع، تتابع طلبات الاستشارات، وتحدّث بيانات المكتب وفريق العمل في مصر والسعودية.</p>
           </div>

@@ -40,7 +40,7 @@ const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kayan-b.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 // Content is managed from the admin dashboard — always render fresh
 export const dynamic = "force-dynamic";

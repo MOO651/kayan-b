@@ -1,16 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
-import {
-  updateOwnAccount,
-  type AdminState,
-} from "@/lib/actions/admin";
-import {
-  Field,
-  TextInput,
-  SubmitButton,
-  FormMessage,
-} from "./fields";
+import { updateOwnAccount, type AdminState } from "@/lib/actions/admin";
+import { Field, TextInput, SubmitButton, FormMessage } from "./fields";
 
 const initialState: AdminState = { status: "idle" };
 
@@ -30,7 +22,12 @@ export function OwnAccountForm({
         <Field label="الاسم" name="name" required error={errors.name}>
           <TextInput name="name" defaultValue={user.name} maxLength={100} />
         </Field>
-        <Field label="البريد الإلكتروني" name="email" required error={errors.email}>
+        <Field
+          label="البريد الإلكتروني"
+          name="email"
+          required
+          error={errors.email}
+        >
           <TextInput
             name="email"
             type="email"
