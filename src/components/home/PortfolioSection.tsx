@@ -41,16 +41,16 @@ export async function PortfolioSection() {
                 key={item.id}
                 delay={(i % 3) * 100}
                 as="article"
-                className="group flex flex-col border border-charcoal-900/10 bg-ivory-50"
+                className="group flex flex-col border border-charcoal-900/10 bg-ivory-50 shadow-[0_1px_2px_rgba(22,24,31,0.04)] transition-shadow duration-500 hover:shadow-[0_20px_50px_-24px_rgba(22,24,31,0.35)]"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-charcoal-800">
+                <div className="relative aspect-16/10 overflow-hidden bg-charcoal-800">
                   {item.image ? (
                     <Image
                       src={item.image}
                       alt={title}
                       fill
                       sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center">
@@ -63,7 +63,7 @@ export async function PortfolioSection() {
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <h3 className="font-display text-xl font-semibold text-charcoal-900">
+                  <h3 className="font-display text-xl font-semibold text-charcoal-900 transition-colors duration-500 group-hover:text-brass-600">
                     {title}
                   </h3>
                   {summary && (

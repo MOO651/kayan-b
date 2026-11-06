@@ -55,7 +55,7 @@ export function Header({ brand }: { brand: BrandSettings }) {
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         transparent
           ? "bg-transparent py-5"
-          : "bg-ivory-50/95 shadow-[0_1px_0_0] shadow-charcoal-900/10 backdrop-blur-md py-3",
+          : "bg-ivory-50/90 shadow-[0_1px_0_0] shadow-charcoal-900/10 backdrop-blur-xl py-3",
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 lg:gap-6 lg:px-8">

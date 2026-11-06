@@ -8,7 +8,7 @@ async function fix(obj) {
   const out = {};
   for (const [k, v] of Object.entries(obj)) {
     out[k] = typeof v === "string"
-      ? v.replace(/كيان باشميل|مكي باشميل/g, "أفاق").replace(/Kayan Bashmeel|Makki Bashmeel/g, "Afaq")
+      ? v.replace(/كيان باشميل|مكي باشميل/g, "مكي و باشميل").replace(/Kayan Bashmeel/g, "Mekky & Bashmeil")
       : await fix(v);
   }
   return out;

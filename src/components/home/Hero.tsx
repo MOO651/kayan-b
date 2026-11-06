@@ -53,19 +53,24 @@ export async function Hero() {
             style={{ animationDelay: "120ms" }}
           >
             {title}
-            <span className="mt-2 block text-2xl font-medium tracking-[0.15em] text-brass-300 uppercase sm:text-3xl">
+            <span className="mt-3 block text-2xl font-medium tracking-[0.15em] text-brass-300 uppercase sm:text-3xl">
               {locale === "ar" ? brand.taglineAr : brand.taglineEn}
             </span>
           </h1>
+          <div
+            className="page-enter rule-brass mt-8 w-40 opacity-80"
+            style={{ animationDelay: "200ms" }}
+            aria-hidden
+          />
           <p
-            className="page-enter mt-8 max-w-2xl text-lg leading-relaxed text-ivory-100/80"
-            style={{ animationDelay: "240ms" }}
+            className="page-enter mt-8 max-w-2xl text-lg leading-relaxed text-ivory-100/80 sm:text-xl sm:leading-relaxed"
+            style={{ animationDelay: "280ms" }}
           >
             {subtitle}
           </p>
           <div
             className="page-enter mt-10 flex flex-wrap items-center gap-4"
-            style={{ animationDelay: "360ms" }}
+            style={{ animationDelay: "400ms" }}
           >
             <ButtonLink href="/consultation" arrow>
               {t("cta")}

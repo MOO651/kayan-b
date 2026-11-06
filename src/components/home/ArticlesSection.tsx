@@ -56,7 +56,7 @@ export async function ArticlesSection() {
                   href={`/articles/${article.slug}`}
                   className="group flex h-full flex-col bg-ivory-50 transition-shadow duration-500 hover:shadow-[0_20px_50px_-20px_rgba(22,24,31,0.25)]"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-charcoal-800">
+                  <div className="relative aspect-16/10 overflow-hidden bg-charcoal-800">
                     {article.image ? (
                       <Image
                         src={article.image}

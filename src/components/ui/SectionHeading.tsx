@@ -42,6 +42,13 @@ export function SectionHeading({
       >
         {title}
       </h2>
+      <span
+        aria-hidden
+        className={cn(
+          "rule-brass mt-5 block w-20 opacity-80",
+          align === "center" && "mx-auto",
+        )}
+      />
       {subtitle && (
         <p
           className={cn(

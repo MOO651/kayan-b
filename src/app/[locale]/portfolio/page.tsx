@@ -70,7 +70,7 @@ export default async function PortfolioPage({
                     as="article"
                     className="group flex flex-col border border-charcoal-900/10 bg-ivory-50"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-charcoal-800">
+                    <div className="relative aspect-16/10 overflow-hidden bg-charcoal-800">
                       {item.image ? (
                         <Image
                           src={item.image}

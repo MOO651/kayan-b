@@ -39,8 +39,8 @@ export async function ContactSection() {
               </h3>
               <ul className="mt-8 space-y-6">
                 {contact.addressAr && (
-                  <li className="flex items-start gap-4">
-                    <span className="flex size-11 shrink-0 items-center justify-center border border-brass-400/30 text-brass-400">
+                  <li className="group flex items-start gap-4">
+                    <span className="flex size-11 shrink-0 items-center justify-center border border-brass-400/30 text-brass-400 transition-colors duration-500 group-hover:border-brass-400/60 group-hover:bg-brass-500/10">
                       <Icon name="map-pin" className="size-5" />
                     </span>
                     <div>
@@ -56,8 +56,8 @@ export async function ContactSection() {
                   </li>
                 )}
                 {contact.phone && (
-                  <li className="flex items-start gap-4">
-                    <span className="flex size-11 shrink-0 items-center justify-center border border-brass-400/30 text-brass-400">
+                  <li className="group flex items-start gap-4">
+                    <span className="flex size-11 shrink-0 items-center justify-center border border-brass-400/30 text-brass-400 transition-colors duration-500 group-hover:border-brass-400/60 group-hover:bg-brass-500/10">
                       <Icon name="phone" className="size-5" />
                     </span>
                     <div>
@@ -74,8 +74,8 @@ export async function ContactSection() {
                   </li>
                 )}
                 {contact.whatsapp && (
-                  <li className="flex items-start gap-4">
-                    <span className="flex size-11 shrink-0 items-center justify-center border border-brass-400/30 text-brass-400">
+                  <li className="group flex items-start gap-4">
+                    <span className="flex size-11 shrink-0 items-center justify-center border border-brass-400/30 text-brass-400 transition-colors duration-500 group-hover:border-brass-400/60 group-hover:bg-brass-500/10">
                       <Icon name="whatsapp" className="size-5" />
                     </span>
                     <div>

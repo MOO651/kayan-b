@@ -78,15 +78,17 @@ html[lang="en"] body {
    fail, are slow, or are blocked. */
 html.js .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(18px);
   transition:
-    opacity 0.5s var(--ease-out-expo),
-    transform 0.5s var(--ease-out-expo);
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 html.js .reveal.is-visible {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 /* Page transition */
@@ -140,4 +142,20 @@ html.js .reveal.is-visible {
     animation: none;
     transition: none;
   }
+}
+
+/* Image polish */
+img {
+  user-select: none;
+}
+
+/* Focus rings match the brass accent */
+:focus-visible {
+  outline: 2px solid var(--color-brass-500);
+  outline-offset: 3px;
+}
+
+/* Elegant anchor offset for header height */
+:target {
+  scroll-margin-top: 6rem;
 }
